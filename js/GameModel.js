@@ -48,6 +48,7 @@ function GameModel(levelFile, currentLevel) {
 
     let gridWidth = null;
     let gridHeight = null;
+    let cellSize = null;  // in canvas pixels. cells must be square
     let visualsGrid = [];
     let entityGrid = [];
 
@@ -65,6 +66,12 @@ function GameModel(levelFile, currentLevel) {
         let cat = Entity.createEntity();
         cat.addComponent(MyGame.components.Position({ x: x, y: y }));
         cat.addComponent(MyGame.components.Moveable({}));
+        cat.addComponent(MyGame.components.Appearance({
+            imageSrc: "images/cat.png",
+            center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
+            size: { width: cellSize, height: cellSize },
+            animated: false
+        }));
 
         entityGrid[x][y] = cat;
         MyGame.entities.push(cat);
@@ -80,8 +87,11 @@ function GameModel(levelFile, currentLevel) {
         gridWidth = parseInt(dimensions[0]);
         gridHeight = parseInt(dimensions[1]);
 
+        let canvas = document.getElementById("canvas");
+        cellSize = canvas.width / Math.min(gridHeight, gridWidth);  // use canvas width bc canvas is always square
+
         let visuals = levelArray.slice(2, gridHeight + 2);
-        let entities = levelArray.slice(gridHeight + 2, levelArray.length - 1);
+        let entities = levelArray.slice(gridHeight + 2, levelArray.length);
 
         // load visual elements (entities with no properties beyond rendering)
         for (let row = 0; row < visuals.length; row++){
@@ -148,7 +158,7 @@ function GameModel(levelFile, currentLevel) {
     }
     
     function update(elapsedTime){
-        
+        MyGame.systems.render.update(elapsedTime, MyGame.entities)
     }
 
     initalize();
