@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Cat is You</title>
+
+</head>
+
+<body onload = "MyGame.game.initialize();">
+    <div id="background">
+    <div id= "game">
+        
+        <div id="main-menu-screen" class="screen">
+            <ul class="menu">
+                <li><button id = "new-game-button">NEW&nbsp;GAME</button></li>
+                <li><button id = "controls-button">CONTROLS</button></li>
+                <li><button id = "credits-button">CREDITS</button></li>
+            </ul>
+        </div>
+        
+        <div id= "game-screen" class="screen">
+            <canvas id="canvas" width="500" height="500" style="width: 100; height: 100%"></canvas>
+        </div>
+
+        <div id="controls-screen" class="screen">
+            <h1>Controls</h1>
+            <table id="controls-columns">
+                <colgroup>
+                    <col style="width:50%">
+                    <col style="width:50%">
+                </colgroup>
+                <tr>
+                    <td style="text-align: right;">MOVE UP:</td>
+                    <td style="padding-left: 2%;"><button id="up-key-button" class="key-button">w</button></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">MOVE DOWN:</td>
+                    <td style="padding-left: 2%;"><button id="down-key-button" class="key-button">s</button></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">MOVE LEFT:</td>
+                    <td style="padding-left: 2%;"><button id="left-key-button" class="key-button">a</button></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">MOVE RIGHT:</td>
+                    <td style="padding-left: 2%;"><button id="right-key-button" class="key-button">d</button></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">RELOAD:</td>
+                    <td style="padding-left: 2%;"><button id="reload-key-button" class="key-button">r</button></td>
+                </tr>
+
+            </table>
+            <ul class="menu">
+                <li><button id="controls-back">BACK</button></li>
+            </ul>
+        </div>
+
+        <div id="credits-screen" class="screen">
+            <h1>CREDITS</h1>
+            <p>Developed by:</p>
+            <p>Kyle Miller</p>
+            <p>Art assets from:</p>
+            <p>[[ART ASSETS HERE]]</p>
+            <p>Sound assets from:</p>
+            <p>[[SOUND ASSETS HERE]]</p>
+            <ul class="menu">
+                <li><button id="credits-back">BACK</button></li>
+            </ul>
+        </div>
+
+        <div id="game-over-screen" class="screen">
+            <h1 id="end-message">YOU WIN!</h1>
+                
+            <ul class="menu">
+                <li><button id="game-over-new-game">REPLAY</button></li>
+                <li><button id="game-over-back">MENU</button></li>
+            </ul>
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+        let MyGame = {
+            screens: {},
+            input: {},
+            objects: {},
+            render: []
+        };
+    </script>
+    
+    <script src = "js/Game.js"></script>
+
+    <script src = "js/Credits.js"></script>
+    <script src = "js/MainMenu.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    color:aliceblue;
+}
+
+#background {
+    width:45%;
+    aspect-ratio: 1/1;
+    margin:auto;
+}
+
+#game {
+    margin: auto;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #000000;
+    font-size: 40px;
+}
+
+#game .screen {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#game .screen.active {
+    display: block;
+}
+
+#main-menu {
+    cursor: pointer;
+    font-size: 0.75em;
+    width: 100%;
+    height: 100%;
+}
+
+ul.menu {
+    text-align: center;
+    padding: 20%;
+    margin: auto;
+    list-style: none;
+}
+
+ul.menu li {
+    margin-bottom: 0.8em;
+    
+}
+
+ul.menu li button {
+    font-family: Arial, sans-serif;
+    font-size: 0.6em;
+    color:rgb(255, 0, 0);
+    width: 75%;
+    height: 2em;
+    background:rgb(0, 255, 255);
+    border: 0.1em solid rgba(0, 29, 90, 0.26);
+    box-shadow: 0.2em 0.2em 0.3em black;
+}
+
+ul.menu li button:hover {
+    background:rgb(0, 200, 225)
+}
+
+ul.menu li button:active {
+    color: rgb(221, 253, 253);
+    background:rgb(0, 200, 225);
+}
+
+#game div h1 {
+    font-size: 1em;
+    text-align: center;
+}
+
+#high-scores-screen ol {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#game div p {
+    font-size: 0.5em;
+}
+
+#credits-screen p {
+    text-align: center;
+}
+
+#controls-columns {
+    width: 100%;
+}
+
+#game-over-high-scores {
+    text-align: center;
+    font-size: 0.4em;
+}
+
+.key-button {
+    font-size: 0.6em;
+    color: rgb(255, 0, 0);
+    width: 50%;
+    background:rgb(0, 255, 255);
+    border: 0.1em solid rgba(0, 29, 90, 0.26);
+}
+
+.key-button:hover {
+    background:rgb(0, 200, 225)
+}
+
+.key-button:active {
+    color: rgb(221, 253, 253);
+    background:rgb(0, 200, 225);
+}
