@@ -68,7 +68,6 @@ function GameModel(levelFile, currentLevel) {
         cat.addComponent(MyGame.components.Moveable({}));
         cat.addComponent(MyGame.components.Appearance({
             imageSrc: "images/cat.png",
-            center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
             size: { width: cellSize, height: cellSize },
             animated: false
         }));

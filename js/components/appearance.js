@@ -13,7 +13,6 @@ MyGame.components.Appearance = function(spec){
         get imageSrc() { return spec.imageSrc; },
         get imageReady() { return isReady; },
         get image() { return image; },
-        get center() { return spec.center; },
         get size() { return spec.size; },
         get animated() { return spec.animated; }
     }
