@@ -86,6 +86,7 @@
         let MyGame = {
             screens: {},
             input: {},
+            entities: [],
             components: {},
             systems: {},
             render: {}
@@ -97,7 +98,13 @@
     <script src = "js/Input.js"></script>
     <script src = "js/GameKeyboard.js"></script>
     <script src = "js/MenuKeyboard.js"></script>
-    
+
+    <script src = "js/components/moveable.js"></script>
+    <script src = "js/components/position.js"></script>
+
+    <script src = "js/systems/movement.js"></script>
+
+    <script src = "js/entity.js"></script>
     <script src = "js/GameModel.js"></script>
 
     <script src = "js/screens/GamePlay.js"></script>

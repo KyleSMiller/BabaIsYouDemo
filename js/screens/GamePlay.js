@@ -1,4 +1,4 @@
-MyGame.screens["game-screen"] = (function(){
+MyGame.screens["game-screen"] = (function(input){
     "use strict";
 
     let prevTime = performance.now();
@@ -12,16 +12,19 @@ MyGame.screens["game-screen"] = (function(){
         currentLevel = 0;
     }
 
+    function processInput(elapsedTime){
+        input.myKeyboard.update(elapsedTime);
+    }
+
     function update(elapsedTime){
         model.update(elapsedTime);
     }
 
     function gameLoop(timeStamp){
-        // ECS model, so input and render handled elsewhere
-
         let elapsedTime = timeStamp - prevTime;
         prevTime = timeStamp;
 
+        processInput(elapsedTime);
         update(elapsedTime);
 
         if (!cancelNextRequest){
@@ -43,4 +46,4 @@ MyGame.screens["game-screen"] = (function(){
         run: run
     };
 
-}());
+}(MyGame.GameKeyboard));

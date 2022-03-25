@@ -71,16 +71,6 @@ MyGame.input.Keyboard = function() {
         if (that.handlers[newKey] !== undefined){  // if conflicting binds
             alert("Key already bound to another function!")
             return false;
-
-            // this used to be a cool way to swap keys if they were bound to conflicting things,
-            // but that led to nightmares in saving the keys to the browser (due to the keyboard navigation requirements changing mid-assignment)
-            // so i guess it just gets to live as a comment from now on. epic
-            // let swapHandler = that.handlers[newKey];
-            // delete that.handlers[oldKey];
-            // delete that.handlers[newKey];
-            // that.register(newKey, handler);
-            // that.register(oldKey, swapHandler);
-            // return oldKey;
         }
         else {
             delete  that.handlers[oldKey];

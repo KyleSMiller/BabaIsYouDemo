@@ -51,6 +51,26 @@ function GameModel(levelFile, currentLevel) {
     let visualsGrid = [];
     let entityGrid = [];
 
+    function decodeEntity(symbol){  // interpret a symbol in a level file and convert it to an entity
+        // TODO: interpret the symbol
+
+        let entity = null;
+
+        MyGame.entities.push(entity);
+        return entity;
+    }
+
+    // temp testing function
+    function placeCat(x, y){
+        let cat = Entity.createEntity();
+        cat.addComponent(MyGame.components.Position({ x: x, y: y }));
+        cat.addComponent(MyGame.components.Moveable({}));
+
+        entityGrid[x][y] = cat;
+        MyGame.entities.push(cat);
+
+    }
+
     function readLevel(){
         // TODO: read in level file
 
@@ -82,13 +102,53 @@ function GameModel(levelFile, currentLevel) {
         }
     }
     
+    function registerKeys(){
+
+        MyGame.GameKeyboard.registerUp(function() {
+            for (let id in MyGame.entities){
+                let entity = MyGame.entities[id];
+                if (entity.components["moveable"]){
+                    MyGame.systems.movement.move(entity, 0, -1);
+                }
+            }
+        });
+
+        MyGame.GameKeyboard.registerDown(function() {
+            for (let id in MyGame.entities){
+                let entity = MyGame.entities[id];
+                if (entity.components["moveable"]){
+                    MyGame.systems.movement.move(entity, 0, 1);
+                }
+            }
+        });
+
+        MyGame.GameKeyboard.registerLeft(function() {
+            for (let id in MyGame.entities){
+                let entity = MyGame.entities[id];
+                if (entity.components["moveable"]){
+                    MyGame.systems.movement.move(entity, -1, 0);
+                }
+            }
+        });
+
+        MyGame.GameKeyboard.registerRight(function() {
+            for (let id in MyGame.entities){
+                let entity = MyGame.entities[id];
+                if (entity.components["moveable"]){
+                    MyGame.systems.movement.move(entity, 1, 0);
+                }
+            }
+        });
+    }    
 
     function initalize(){
         readLevel();
+        placeCat(10, 10);
+        registerKeys();
     }
     
     function update(elapsedTime){
-          
+        
     }
 
     initalize();
