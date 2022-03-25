@@ -49,4 +49,4 @@ MyGame.screens["credits-screen"] = (function(game) {
         run: run
     };
 
-}(MyGame.game)); 
+}(MyGame.manager)); 

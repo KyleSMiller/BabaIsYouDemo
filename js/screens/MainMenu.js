@@ -59,4 +59,4 @@ MyGame.screens["main-menu-screen"] = (function(game){
         run: run
     };
 
-}(MyGame.game));
+}(MyGame.manager));

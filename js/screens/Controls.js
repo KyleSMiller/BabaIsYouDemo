@@ -174,4 +174,4 @@ MyGame.screens["controls-screen"] = (function(game, menuControls, gameControls){
         run: run
     };
 
-}(MyGame.game, MyGame.MenuKeyboard, MyGame.GameKeyboard));
+}(MyGame.manager, MyGame.MenuKeyboard, MyGame.GameKeyboard));

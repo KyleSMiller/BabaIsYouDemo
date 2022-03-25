@@ -1,4 +1,4 @@
-MyGame.game = (function(screens) {
+MyGame.manager = (function(screens) {
     "use strict";
 
     // keep track of what order screens were opened in
