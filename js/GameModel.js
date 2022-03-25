@@ -67,9 +67,16 @@ function GameModel(levelFile, currentLevel) {
         cat.addComponent(MyGame.components.Position({ x: x, y: y }));
         cat.addComponent(MyGame.components.Moveable({}));
         cat.addComponent(MyGame.components.Appearance({
-            imageSrc: "images/cat.png",
+            imageSrc: "images/bunnyDown.png",
             size: { width: cellSize, height: cellSize },
-            animated: false
+            animated: true,
+            animation: {
+                subTextureWidth: 24,
+                subTextureHeight: 24,
+                frames: 14,
+                frameTime: 100,  // in milliseconds
+                index: 0
+            }
         }));
 
         entityGrid[x][y] = cat;

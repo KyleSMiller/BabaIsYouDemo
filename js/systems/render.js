@@ -3,7 +3,7 @@ MyGame.systems.render = (function(){
 
     // Render all entities with both a position and appearance
     // Handles rendering of both animated and static textures
-    function renderEntities(entities){
+    function renderEntities(entities, elapsedTime){
         for (let id in entities) {
             let entity = entities[id];
             if (entity.components.appearance && entity.components.position){
@@ -17,8 +17,12 @@ MyGame.systems.render = (function(){
                         MyGame.render.AnimatedTexture.render({
                             image: entity.components.appearance.image,
                             center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
-                            size: entity.components.appearance.size
+                            size: entity.components.appearance.size,
+                            subTextureWidth: entity.components.appearance.subTextureWidth,
+                            subTextureHeight: entity.components.appearance.subTextureHeight,
+                            index: entity.components.appearance.index
                         });
+                        entity.components.appearance.nextFrame(elapsedTime);
                         
                     }
                 }
@@ -37,7 +41,7 @@ MyGame.systems.render = (function(){
 
     function update(elapsedTime, entities){
         MyGame.graphics.clear();
-        renderEntities(entities);
+        renderEntities(entities, elapsedTime);
     }
 
     return {
