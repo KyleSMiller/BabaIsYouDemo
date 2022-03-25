@@ -4,9 +4,12 @@ MyGame.screens["game-screen"] = (function(){
     let prevTime = performance.now();
     let cancelNextRequest = true;
     let model = null;
+    let levelFile = "file://level-all.bbiy";
+    let currentLevel = null;
 
     function initialize() {
         console.log("game initalizing...");
+        currentLevel = 0;
     }
 
     function update(elapsedTime){
@@ -28,11 +31,10 @@ MyGame.screens["game-screen"] = (function(){
     }
 
     function run(){
-        model = GameModel();
+        model = GameModel(levelFile, currentLevel);
 
         prevTime = performance.now();
         cancelNextRequest = false;
-        newGame();
         requestAnimationFrame(gameLoop);
     }
 
