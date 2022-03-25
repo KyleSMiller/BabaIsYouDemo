@@ -53,7 +53,7 @@ ul.menu li {
 ul.menu li button {
     font-family: Arial, sans-serif;
     font-size: 0.6em;
-    color:rgb(255, 0, 0);
+    color:rgb(0, 0, 0);
     width: 75%;
     height: 2em;
     background:rgb(0, 255, 255);
@@ -101,7 +101,7 @@ ul.menu li button:active {
 
 .key-button {
     font-size: 0.6em;
-    color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
     width: 50%;
     background:rgb(0, 255, 255);
     border: 0.1em solid rgba(0, 29, 90, 0.26);
