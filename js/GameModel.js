@@ -3,47 +3,47 @@ function GameModel(levelFile, currentLevel) {
     
     // file reading will be implemented later - just hard-code a level to test
     let tempLevel = `Level-1
-    20 x 20
-    hhhhhhhhhhhhhhhhhhhh
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h   llllllllllll   h
-    h   llllllllllll   h
-    h   llllllllllll   h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    h                  h
-    hhhhhhhhhhhhhhhhhhhh
-                        
-                        
-                        
-                        
-                        
-         WIS    RIP     
-                        
-        wwwwwwwwwwww    
-             r          
-          b  r   f      
-             r          
-        wwwwwwwwwwww    
-                        
-         BIY    FIX     
-                        
-                        
-                        
-                        
-                        
-                        `
+20 x 20
+hhhhhhhhhhhhhhhhhhhh
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h   llllllllllll   h
+h   llllllllllll   h
+h   llllllllllll   h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+h                  h
+hhhhhhhhhhhhhhhhhhhh
+                    
+                    
+                    
+                    
+                    
+     WIS    RIP     
+                    
+    wwwwwwwwwwww    
+         r          
+      b  r   f      
+         r          
+    wwwwwwwwwwww    
+                    
+     BIY    FIX     
+                    
+                    
+                    
+                    
+                    
+                    `
 
 
     let gridWidth = null;
@@ -53,22 +53,38 @@ function GameModel(levelFile, currentLevel) {
     let entityGrid = [];
 
     function decodeEntity(symbol, x, y){  // interpret a symbol in a level file and convert it to an entity
-        // // TODO: interpret the symbol
+        let entity = null;
 
-        // let entity = null;
+        switch(symbol){
+            case "h": entity = Hedge(x, y, cellSize); break;
+            case "l": entity = Floor(x, y, cellSize); break;
+            case "W": entity = WallBlock(x, y, cellSize); break;
+            case "I": entity = IsBlock(x, y, cellSize); break;
+            case "S": entity = StopBlock(x, y, cellSize); break;
+            case "R": entity = RockBlock(x, y, cellSize); break;
+            case "P": entity = PushBlock(x, y, cellSize); break;
+            case "w": entity = Wall(x, y, cellSize); break;
+            case "b": entity = Cat(x, y, cellSize); break;
+            case "r": entity = Rock(x, y, cellSize); break;
+            case "f": entity = Flag(x, y, cellSize); break;
+            case "B": entity = BabaBlock(x, y, cellSize); break;
+            case "Y": entity = YouBlock(x, y, cellSize); break;
+            case "F": entity = FlagBlock(x, y, cellSize); break;
+            case "X": entity = WinBlock(x, y, cellSize); break;
+            case "g": entity = Grass(x, y, cellSize); break;
+            case "a": entity = Water(x, y, cellSize); break;
+            case "A": entity = WaterBlock(x, y, cellSize); break;
+            case "N": entity = SinkBlock(x, y, cellSize); break;
+            case "v": entity = Lava(x, y, cellSize); break;
+            case "V": entity = LavaBlock(x, y, cellSize); break;
+            case "K": entity = KillBlock(x, y, cellSize); break;
+        }
 
-        // switch(symbol){
-        //     case "h": entity = Hedge(x, y, cellSize); break;
-        //     case "l": entity = Floor(x, y, cellSize); break;
-        //     case "W": entity = 
-        // }
-
-        // entity = Cat(10, 10, cellSize);
-        // // entity.addComponent(MyGame.components.Moveable({}));
+        // entity.addComponent(MyGame.components.Moveable({}));
         // entityGrid[10][10] = entity;
         // MyGame.entities.push(entity);
 
-        // return entity;
+        return entity;
     }
 
     function readLevel(){
@@ -92,6 +108,12 @@ function GameModel(levelFile, currentLevel) {
             visualsGrid.push([]);
             for (let cell = 0; cell < cells.length; cell++){
                 visualsGrid[row].push(cells[cell]);  // TODO: function that converts smybol to entity
+                
+                let decodedEntity = decodeEntity(cells[cell], cell, row)
+                if (decodedEntity != null){
+                    visualsGrid[row][cell] = decodedEntity;
+                    MyGame.entities.push(decodedEntity);
+                }
             }
         }
 
@@ -101,6 +123,12 @@ function GameModel(levelFile, currentLevel) {
             entityGrid.push([]);
             for (let cell = 0; cell < cells.length; cell++){
                 entityGrid[row].push(cells[cell]);  // TODO: function that converts smybol to entity
+                
+                let decodedEntity = decodeEntity(cells[cell], cell, row)
+                if (decodedEntity != null){
+                    entityGrid[row][cell] = decodedEntity;
+                    MyGame.entities.push(decodedEntity);
+                }
             }
         }
     }
@@ -146,12 +174,6 @@ function GameModel(levelFile, currentLevel) {
 
     function initalize(){
         readLevel();
-
-        let test = WaterBlock(5, 5, cellSize);
-        entityGrid[5][5] = test;
-        MyGame.entities.push(test);
-
-
         registerKeys();
     }
     
