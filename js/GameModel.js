@@ -107,7 +107,7 @@ hhhhhhhhhhhhhhhhhhhh
             let cells = visuals[row].split("");
             visualsGrid.push([]);
             for (let cell = 0; cell < cells.length; cell++){
-                visualsGrid[row].push(cells[cell]);  // TODO: function that converts smybol to entity
+                visualsGrid[row].push(cells[cell]);
                 
                 let decodedEntity = decodeEntity(cells[cell], cell, row)
                 if (decodedEntity != null){
@@ -118,16 +118,28 @@ hhhhhhhhhhhhhhhhhhhh
         }
 
         // load entities
+        let cat = null;
+        let catRow = null;
+        let catCell = null;
         for (let row = 0; row < entities.length; row++){
             let cells = entities[row].split("");
             entityGrid.push([]);
             for (let cell = 0; cell < cells.length; cell++){
-                entityGrid[row].push(cells[cell]);  // TODO: function that converts smybol to entity
+                entityGrid[row].push(cells[cell]);
                 
                 let decodedEntity = decodeEntity(cells[cell], cell, row)
                 if (decodedEntity != null){
-                    entityGrid[row][cell] = decodedEntity;
-                    MyGame.entities.push(decodedEntity);
+                    
+                    // we want cat to be top layer, so we add it to the grid last
+                    if (decodedEntity.components.type.type === "cat"){
+                        cat = decodedEntity;
+                        catRow = row;
+                        catCell = cell;
+                    }
+                    else{
+                        entityGrid[row][cell] = decodedEntity;
+                        MyGame.entities.push(decodedEntity);
+                    }
                 }
             }
         }
@@ -157,6 +169,11 @@ hhhhhhhhhhhhhhhhhhhh
             MyGame.entities.push(hedge);
         }
 
+        // render cat on top of everything
+        if (cat !== null){
+            entityGrid[catRow][catCell] = cat;
+            MyGame.entities.push(cat);
+        }
 
     }
     

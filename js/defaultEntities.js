@@ -4,14 +4,15 @@
 
 let Cat = function(x, y, size){
     let cat = Entity.createEntity();
-        cat.addComponent(MyGame.components.Position({ x: x, y: y }));
-        cat.addComponent(MyGame.components.Appearance({
-            imageSrc: "images/cat.png",
-            size: { width: size, height: size },
-            animated: false,
-        }));
+    cat.addComponent(MyGame.components.Position({ x: x, y: y }));
+    cat.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/cat.png",
+        size: { width: size, height: size },
+        animated: false,
+    }));
+    cat.addComponent(MyGame.components.Type({type: "cat"}));
 
-        return cat;
+    return cat;
 }
 
 let Rock = function(x, y, size){
@@ -29,6 +30,7 @@ let Rock = function(x, y, size){
             index: 0
         }
     }));
+    rock.addComponent(MyGame.components.Type({type: "rock"}));
 
     return rock;
 }
@@ -41,6 +43,7 @@ let Wall = function(x, y, size){
         size: { width: size, height: size },
         animated: false
     }));
+    wall.addComponent(MyGame.components.Type({type: "wall"}));
 
     return wall;
 }
@@ -60,7 +63,8 @@ let Flag = function(x, y, size){
             index: 0
         }
     }));
-
+    flag.addComponent(MyGame.components.Type({type: "flag"}));
+    
     return flag;
 }
 
@@ -72,6 +76,7 @@ let Floor = function(x, y, size){
         size: { width: size, height: size },
         animated: false
     }));
+    floor.addComponent(MyGame.components.Type({type: "floor"}));
 
     return floor;
 }
@@ -91,6 +96,7 @@ let Grass = function(x, y, size){
             index: 0
         }
     }));
+    grass.addComponent(MyGame.components.Type({type: "grass"}));
 
     return grass;
 }
@@ -110,6 +116,7 @@ let Water = function(x, y, size){
             index: 0
         }
     }));
+    water.addComponent(MyGame.components.Type({type: "water"}));
 
     return water;
 }
@@ -129,6 +136,7 @@ let Lava = function(x, y, size){
             index: 0
         }
     }));
+    lava.addComponent(MyGame.components.Type({type: "lava"}));
 
     return lava;
 }
@@ -141,6 +149,7 @@ let Hedge = function(x, y, size){
         size: { width: size, height: size },
         animated: false
     }));
+    hedge.addComponent(MyGame.components.Type({type: "hedge"}));
 
     return hedge;
 }
@@ -162,6 +171,7 @@ let IsBlock = function(x, y, size){
             index: 0
         }
     }));
+    isBlock.addComponent(MyGame.components.Type({type: "isBlock"}));
 
     return isBlock;
 }
@@ -181,6 +191,7 @@ let YouBlock = function(x, y, size){
             index: 0
         }
     }));
+    youBlock.addComponent(MyGame.components.Type({type: "youBlock"}));
 
     return youBlock;
 }
@@ -200,6 +211,7 @@ let StopBlock = function(x, y, size){
             index: 0
         }
     }));
+    stopBlock.addComponent(MyGame.components.Type({type: "stopBlock"}));
 
     return stopBlock;
 }
@@ -219,6 +231,7 @@ let PushBlock = function(x, y, size){
             index: 0
         }
     }));
+    pushBlock.addComponent(MyGame.components.Type({type: "pushBlock"}));
 
     return pushBlock;
 }
@@ -238,6 +251,7 @@ let WinBlock = function(x, y, size){
             index: 0
         }
     }));
+    winBlock.addComponent(MyGame.components.Type({type: "winBlock"}));
 
     return winBlock;
 }
@@ -257,6 +271,7 @@ let SinkBlock = function(x, y, size){
             index: 0
         }
     }));
+    sinkBlock.addComponent(MyGame.components.Type({type: "sinkBlock"}));
 
     return sinkBlock;
 }
@@ -276,6 +291,7 @@ let KillBlock = function(x, y, size){
             index: 0
         }
     }));
+    killBlock.addComponent(MyGame.components.Type({type: "killBlock"}));
 
     return killBlock;
 }
@@ -295,6 +311,7 @@ let BabaBlock = function(x, y, size){
             index: 0
         }
     }));
+    babaBlock.addComponent(MyGame.components.Type({type: "babaBlock"}));
 
     return babaBlock;
 }
@@ -314,6 +331,7 @@ let WallBlock = function(x, y, size){
             index: 0
         }
     }));
+    wallBlock.addComponent(MyGame.components.Type({type: "wallBlock"}));
 
     return wallBlock;
 }
@@ -333,6 +351,7 @@ let RockBlock = function(x, y, size){
             index: 0
         }
     }));
+    rockBlock.addComponent(MyGame.components.Type({type: "rockBlock"}));
 
     return rockBlock;
 }
@@ -352,6 +371,7 @@ let FlagBlock = function(x, y, size){
             index: 0
         }
     }));
+    flagBlock.addComponent(MyGame.components.Type({type: "flagBlock"}));
 
     return flagBlock;
 }
@@ -371,6 +391,7 @@ let LavaBlock = function(x, y, size){
             index: 0
         }
     }));
+    lavaBlock.addComponent(MyGame.components.Type({type: "lavaBlock"}));
 
     return lavaBlock;
 }
@@ -390,6 +411,7 @@ let WaterBlock = function(x, y, size){
             index: 0
         }
     }));
+    waterBlock.addComponent(MyGame.components.Type({type: "waterBlock"}));
 
     return waterBlock;
 }
