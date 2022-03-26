@@ -298,3 +298,98 @@ let BabaBlock = function(x, y, size){
 
     return babaBlock;
 }
+
+let WallBlock = function(x, y, size){
+    let wallBlock = Entity.createEntity();
+    wallBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
+    wallBlock.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/wordWall.png",
+        size: { width: size, height: size },
+        animated: true,
+        animation: {
+            subTextureWidth: 24,
+            subTextureHeight: 24,
+            frames: 2,
+            frameTime: 100,
+            index: 0
+        }
+    }));
+
+    return wallBlock;
+}
+
+let RockBlock = function(x, y, size){
+    let rockBlock = Entity.createEntity();
+    rockBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
+    rockBlock.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/wordRock.png",
+        size: { width: size, height: size },
+        animated: true,
+        animation: {
+            subTextureWidth: 24,
+            subTextureHeight: 24,
+            frames: 2,
+            frameTime: 100,
+            index: 0
+        }
+    }));
+
+    return rockBlock;
+}
+
+let FlagBlock = function(x, y, size){
+    let flagBlock = Entity.createEntity();
+    flagBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
+    flagBlock.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/wordFlag.png",
+        size: { width: size, height: size },
+        animated: true,
+        animation: {
+            subTextureWidth: 24,
+            subTextureHeight: 24,
+            frames: 2,
+            frameTime: 100,
+            index: 0
+        }
+    }));
+
+    return flagBlock;
+}
+
+let LavaBlock = function(x, y, size){
+    let lavaBlock = Entity.createEntity();
+    lavaBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
+    lavaBlock.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/wordLava.png",
+        size: { width: size, height: size },
+        animated: true,
+        animation: {
+            subTextureWidth: 24,
+            subTextureHeight: 24,
+            frames: 2,
+            frameTime: 100,
+            index: 0
+        }
+    }));
+
+    return lavaBlock;
+}
+
+let WaterBlock = function(x, y, size){
+    let waterBlock = Entity.createEntity();
+    waterBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
+    waterBlock.addComponent(MyGame.components.Appearance({
+        imageSrc: "images/wordWater.png",
+        size: { width: size, height: size },
+        animated: true,
+        animation: {
+            subTextureWidth: 24,
+            subTextureHeight: 24,
+            frames: 2,
+            frameTime: 100,
+            index: 0
+        }
+    }));
+
+    return waterBlock;
+}

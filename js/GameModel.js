@@ -52,13 +52,23 @@ function GameModel(levelFile, currentLevel) {
     let visualsGrid = [];
     let entityGrid = [];
 
-    function decodeEntity(symbol){  // interpret a symbol in a level file and convert it to an entity
-        // TODO: interpret the symbol
+    function decodeEntity(symbol, x, y){  // interpret a symbol in a level file and convert it to an entity
+        // // TODO: interpret the symbol
 
-        let entity = null;
+        // let entity = null;
 
-        MyGame.entities.push(entity);
-        return entity;
+        // switch(symbol){
+        //     case "h": entity = Hedge(x, y, cellSize); break;
+        //     case "l": entity = Floor(x, y, cellSize); break;
+        //     case "W": entity = 
+        // }
+
+        // entity = Cat(10, 10, cellSize);
+        // // entity.addComponent(MyGame.components.Moveable({}));
+        // entityGrid[10][10] = entity;
+        // MyGame.entities.push(entity);
+
+        // return entity;
     }
 
     function readLevel(){
@@ -136,15 +146,11 @@ function GameModel(levelFile, currentLevel) {
 
     function initalize(){
         readLevel();
-        
-        let cat = Cat(10, 10, cellSize);
-        cat.addComponent(MyGame.components.Moveable({}));
-        entityGrid[10][10] = cat;
-        MyGame.entities.push(cat);
-        
-        let wall = BabaBlock(5, 5, cellSize);
-        entityGrid[5][5] = wall;
-        MyGame.entities.push(wall);
+
+        let test = WaterBlock(5, 5, cellSize);
+        entityGrid[5][5] = test;
+        MyGame.entities.push(test);
+
 
         registerKeys();
     }
