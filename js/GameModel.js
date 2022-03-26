@@ -61,29 +61,6 @@ function GameModel(levelFile, currentLevel) {
         return entity;
     }
 
-    // temp testing function
-    function placeCat(x, y){
-        let cat = Entity.createEntity();
-        cat.addComponent(MyGame.components.Position({ x: x, y: y }));
-        cat.addComponent(MyGame.components.Moveable({}));
-        cat.addComponent(MyGame.components.Appearance({
-            imageSrc: "images/bunnyDown.png",
-            size: { width: cellSize, height: cellSize },
-            animated: true,
-            animation: {
-                subTextureWidth: 24,
-                subTextureHeight: 24,
-                frames: 14,
-                frameTime: 100,  // in milliseconds
-                index: 0
-            }
-        }));
-
-        entityGrid[x][y] = cat;
-        MyGame.entities.push(cat);
-
-    }
-
     function readLevel(){
         // TODO: read in level file
 
@@ -159,7 +136,16 @@ function GameModel(levelFile, currentLevel) {
 
     function initalize(){
         readLevel();
-        placeCat(10, 10);
+        
+        let cat = Cat(10, 10, cellSize);
+        cat.addComponent(MyGame.components.Moveable({}));
+        entityGrid[10][10] = cat;
+        MyGame.entities.push(cat);
+        
+        let wall = BabaBlock(5, 5, cellSize);
+        entityGrid[5][5] = wall;
+        MyGame.entities.push(wall);
+
         registerKeys();
     }
     
