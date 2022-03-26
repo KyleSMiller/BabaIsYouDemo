@@ -64,7 +64,7 @@ hhhhhhhhhhhhhhhhhhhh
             case "R": entity = RockBlock(x, y, cellSize); break;
             case "P": entity = PushBlock(x, y, cellSize); break;
             case "w": entity = Wall(x, y, cellSize); break;
-            case "b": entity = Cat(x, y, cellSize); break;
+            case "b": entity = Cat(x, y, cellSize); entity.addComponent(MyGame.components.Moveable({})); break;
             case "r": entity = Rock(x, y, cellSize); break;
             case "f": entity = Flag(x, y, cellSize); break;
             case "B": entity = BabaBlock(x, y, cellSize); break;
@@ -133,21 +133,26 @@ hhhhhhhhhhhhhhhhhhhh
         }
 
         // always surround the arena with collidable hedges
-        for (let i in entityGrid[0]){  // top row
+        for (let i = 0; i < entityGrid[0].length; i++){  // top row
             let hedge = Hedge(i, 0, cellSize);
+            hedge.addComponent(MyGame.components.Stop({}));
             entityGrid[0][i] = hedge;
             MyGame.entities.push(hedge);
         }
-        for (let i in entityGrid[entityGrid.length - 1]){  // bottom row
+        for (let i = 0 ; i < entityGrid[entityGrid.length - 1].length; i++){  // bottom row
             let hedge = Hedge(i, entityGrid.length - 1, cellSize);
+            hedge.addComponent(MyGame.components.Stop({}));
             entityGrid[entityGrid.length - 1][i] = hedge;
             MyGame.entities.push(hedge);
         }
-        for (let i in entityGrid){  // left and right edges
+        for (let i = 0; i < entityGrid.length; i++){  // left and right edges
             let hedge = Hedge(0, i, cellSize);
+            hedge.addComponent(MyGame.components.Stop({}));
             entityGrid[i][0] = hedge;
             MyGame.entities.push(hedge);
-            hedge = Hedge(entityGrid.length - 1, i, cellSize)
+            
+            hedge = Hedge(entityGrid.length - 1, i, cellSize);
+            hedge.addComponent(MyGame.components.Stop({}));
             entityGrid[i][entityGrid.length - 1]
             MyGame.entities.push(hedge);
         }
@@ -193,6 +198,23 @@ hhhhhhhhhhhhhhhhhhhh
             }
         });
     }    
+
+
+    MyGame.entitiesAt = function(x, y){
+        let entityList = [];
+
+        for (let e in MyGame.entities){
+            let ent = MyGame.entities[e]
+            if (ent.components.position){
+                if(ent.components.position.x === x && ent.components.position.y === y){
+                    entityList.push(ent);
+                }
+            }
+        }
+
+        return entityList;
+    }
+
 
     function initalize(){
         readLevel();
