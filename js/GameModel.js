@@ -66,7 +66,7 @@ hhhhhhhhhhhhhhhhhhhh
             case "w": entity = Wall(x, y, cellSize); break;
             case "b": entity = Cat(x, y, cellSize); entity.addComponent(MyGame.components.Moveable({})); break;
             case "r": entity = Rock(x, y, cellSize); break;
-            case "f": entity = Flag(x, y, cellSize); entity.addComponent(MyGame.components.Win({})); break;
+            case "f": entity = Flag(x, y, cellSize); break;
             case "B": entity = BabaBlock(x, y, cellSize); break;
             case "Y": entity = YouBlock(x, y, cellSize); break;
             case "F": entity = FlagBlock(x, y, cellSize); break;
@@ -241,6 +241,7 @@ hhhhhhhhhhhhhhhhhhhh
     function update(elapsedTime){
         MyGame.systems.render.update(elapsedTime, MyGame.entities)
         MyGame.systems.winning.update(MyGame.entities);
+        MyGame.systems.sinking.update(MyGame.entities);
     }
 
     initalize();
