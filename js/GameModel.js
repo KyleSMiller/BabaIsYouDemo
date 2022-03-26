@@ -131,6 +131,28 @@ hhhhhhhhhhhhhhhhhhhh
                 }
             }
         }
+
+        // always surround the arena with collidable hedges
+        for (let i in entityGrid[0]){  // top row
+            let hedge = Hedge(i, 0, cellSize);
+            entityGrid[0][i] = hedge;
+            MyGame.entities.push(hedge);
+        }
+        for (let i in entityGrid[entityGrid.length - 1]){  // bottom row
+            let hedge = Hedge(i, entityGrid.length - 1, cellSize);
+            entityGrid[entityGrid.length - 1][i] = hedge;
+            MyGame.entities.push(hedge);
+        }
+        for (let i in entityGrid){  // left and right edges
+            let hedge = Hedge(0, i, cellSize);
+            entityGrid[i][0] = hedge;
+            MyGame.entities.push(hedge);
+            hedge = Hedge(entityGrid.length - 1, i, cellSize)
+            entityGrid[i][entityGrid.length - 1]
+            MyGame.entities.push(hedge);
+        }
+
+
     }
     
     function registerKeys(){
