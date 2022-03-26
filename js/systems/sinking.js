@@ -2,7 +2,8 @@ MyGame.systems.sinking = (function(){
     "use strict";
 
     function sinkEntity(entity){
-        console.log("sinking: " + entity.components.type.type);
+        let idx = MyGame.entities.indexOf(entity);
+        MyGame.entities.splice(idx, 1);
     }
 
     function update(entities){
