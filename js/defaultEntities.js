@@ -11,6 +11,7 @@ let Cat = function(x, y, size){
         animated: false,
     }));
     cat.addComponent(MyGame.components.Type({type: "cat"}));
+    cat.addComponent(MyGame.components.AssociatedBlock({block: "babaBlock"}));
 
     return cat;
 }
@@ -31,6 +32,7 @@ let Rock = function(x, y, size){
         }
     }));
     rock.addComponent(MyGame.components.Type({type: "rock"}));
+    rock.addComponent(MyGame.components.AssociatedBlock({block: "rockBlock"}));
 
     return rock;
 }
@@ -44,6 +46,7 @@ let Wall = function(x, y, size){
         animated: false
     }));
     wall.addComponent(MyGame.components.Type({type: "wall"}));
+    wall.addComponent(MyGame.components.AssociatedBlock({block: "wallBlock"}));
 
     return wall;
 }
@@ -64,6 +67,7 @@ let Flag = function(x, y, size){
         }
     }));
     flag.addComponent(MyGame.components.Type({type: "flag"}));
+    flag.addComponent(MyGame.components.AssociatedBlock({block: "flagBlock"}));
     
     return flag;
 }
@@ -117,6 +121,7 @@ let Water = function(x, y, size){
         }
     }));
     water.addComponent(MyGame.components.Type({type: "water"}));
+    water.addComponent(MyGame.components.AssociatedBlock({block: "waterBlock"}));
 
     return water;
 }
@@ -137,6 +142,7 @@ let Lava = function(x, y, size){
         }
     }));
     lava.addComponent(MyGame.components.Type({type: "lava"}));
+    lava.addComponent(MyGame.components.AssociatedBlock({block: "lavaBlock"}));
 
     return lava;
 }
@@ -192,6 +198,7 @@ let YouBlock = function(x, y, size){
         }
     }));
     youBlock.addComponent(MyGame.components.Type({type: "youBlock"}));
+    youBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Moveable}));
 
     return youBlock;
 }
@@ -212,6 +219,7 @@ let StopBlock = function(x, y, size){
         }
     }));
     stopBlock.addComponent(MyGame.components.Type({type: "stopBlock"}));
+    stopBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Stop}));
 
     return stopBlock;
 }
@@ -232,6 +240,7 @@ let PushBlock = function(x, y, size){
         }
     }));
     pushBlock.addComponent(MyGame.components.Type({type: "pushBlock"}));
+    pushBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Stop})); // TODO: replace with push
 
     return pushBlock;
 }
@@ -252,6 +261,7 @@ let WinBlock = function(x, y, size){
         }
     }));
     winBlock.addComponent(MyGame.components.Type({type: "winBlock"}));
+    winBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Win}));
 
     return winBlock;
 }
@@ -272,6 +282,7 @@ let SinkBlock = function(x, y, size){
         }
     }));
     sinkBlock.addComponent(MyGame.components.Type({type: "sinkBlock"}));
+    sinkBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Sink}));
 
     return sinkBlock;
 }
@@ -292,6 +303,7 @@ let KillBlock = function(x, y, size){
         }
     }));
     killBlock.addComponent(MyGame.components.Type({type: "killBlock"}));
+    killBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Sink}));
 
     return killBlock;
 }
@@ -312,6 +324,8 @@ let BabaBlock = function(x, y, size){
         }
     }));
     babaBlock.addComponent(MyGame.components.Type({type: "babaBlock"}));
+    babaBlock.addComponent(MyGame.components.ObjectBlock({}));
+    
 
     return babaBlock;
 }
@@ -332,6 +346,7 @@ let WallBlock = function(x, y, size){
         }
     }));
     wallBlock.addComponent(MyGame.components.Type({type: "wallBlock"}));
+    wallBlock.addComponent(MyGame.components.ObjectBlock({}));
 
     return wallBlock;
 }
@@ -352,6 +367,7 @@ let RockBlock = function(x, y, size){
         }
     }));
     rockBlock.addComponent(MyGame.components.Type({type: "rockBlock"}));
+    rockBlock.addComponent(MyGame.components.ObjectBlock({}));
 
     return rockBlock;
 }
@@ -372,6 +388,7 @@ let FlagBlock = function(x, y, size){
         }
     }));
     flagBlock.addComponent(MyGame.components.Type({type: "flagBlock"}));
+    flagBlock.addComponent(MyGame.components.ObjectBlock({}));
 
     return flagBlock;
 }
@@ -392,6 +409,7 @@ let LavaBlock = function(x, y, size){
         }
     }));
     lavaBlock.addComponent(MyGame.components.Type({type: "lavaBlock"}));
+    lavaBlock.addComponent(MyGame.components.ObjectBlock({}));
 
     return lavaBlock;
 }
@@ -412,6 +430,7 @@ let WaterBlock = function(x, y, size){
         }
     }));
     waterBlock.addComponent(MyGame.components.Type({type: "waterBlock"}));
+    waterBlock.addComponent(MyGame.components.ObjectBlock({}));
 
     return waterBlock;
 }
