@@ -24,15 +24,15 @@ MyGame.systems.rules = (function(){
             let ents = MyGame.entitiesAt(x - 1, y);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.objectBlock){
-                    typeLeft = ents[i];  // object blocks can never overlap, so don't account for it
+                    typeLeft = ents[i];
                 }
             }
         }
-        if (y + 1 <= grid.length[0] - 1){
-            ents = MyGame.entitiesAt(x, y + 1);
+        if (y + 1 <= grid[0].length - 1){
+            let ents = MyGame.entitiesAt(x, y + 1);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.rule){
-                    ruleDown = ents[i];  // object blocks can never overlap, so don't account for it
+                    ruleDown = ents[i];
                 }
             }
         }
@@ -40,7 +40,7 @@ MyGame.systems.rules = (function(){
             let ents = MyGame.entitiesAt(x + 1, y);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.rule){
-                    ruleRight = ents[i];  // object blocks can never overlap, so don't account for it
+                    ruleRight = ents[i];
                 }
             }
         }
