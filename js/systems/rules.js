@@ -60,11 +60,29 @@ MyGame.systems.rules = (function(){
     }
 
     function update(entities, grid){
+        // remove components from all entities
+        for (let i = 0; i < entities.length; i++){
+            if (entities[i].components.associatedBlock){  // if it has an associated block, a rule can be applied to it
+                if (rules[entities[i].components.associatedBlock.block]){
+                    entities[i].removeComponent(rules[entities[i].components.associatedBlock.block]());
+                }
+            }
+        }
+        
         // check rule blocks for rules
         rules = {}
         for (let i = 0; i < entities.length; i++){
             if (entities[i].components.type.type === "isBlock"){
                 createRules(entities[i], grid);
+            }
+        }
+
+        // apply the rules defined by the rule blocks
+        for (let i = 0; i < entities.length; i++){
+            if (entities[i].components.associatedBlock){
+                if (rules[entities[i].components.associatedBlock.block]){
+                    entities[i].addComponent(rules[entities[i].components.associatedBlock.block]());
+                }
             }
         }
     }
