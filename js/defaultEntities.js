@@ -309,7 +309,7 @@ let KillBlock = function(x, y, size){
         }
     }));
     killBlock.addComponent(MyGame.components.Type({type: "killBlock"}));
-    killBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Sink}));
+    killBlock.addComponent(MyGame.components.Rule({rule: MyGame.components.Kill}));
     killBlock.addComponent(MyGame.components.Pushable({}));
 
     return killBlock;

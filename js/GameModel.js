@@ -242,6 +242,7 @@ hhhhhhhhhhhhhhhhhhhh
         MyGame.systems.render.update(elapsedTime, MyGame.entities)
         MyGame.systems.winning.update(MyGame.entities);
         MyGame.systems.sinking.update(MyGame.entities);
+        MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(MyGame.entities, entityGrid);
     }
 
