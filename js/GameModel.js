@@ -64,7 +64,7 @@ hhhhhhhhhhhhhhhhhhhh
             case "R": entity = RockBlock(x, y, cellSize); break;
             case "P": entity = PushBlock(x, y, cellSize); break;
             case "w": entity = Wall(x, y, cellSize); break;
-            case "b": entity = Cat(x, y, cellSize); entity.addComponent(MyGame.components.Moveable({})); break;
+            case "b": entity = Cat(x, y, cellSize); break;
             case "r": entity = Rock(x, y, cellSize); break;
             case "f": entity = Flag(x, y, cellSize); break;
             case "B": entity = BabaBlock(x, y, cellSize); break;
