@@ -3,7 +3,9 @@ MyGame.systems.winning = (function(){
 
     let hasWon = false;
     let particleSystems = [];
-
+    let postWinDelay = 1200;  // milliseconds to wait after winning before advancing to the next level
+    let timeSinceWin = 0;
+    
     function winGame(winningTile){
         hasWon = true;
         // TODO: advance to next level
@@ -14,6 +16,8 @@ MyGame.systems.winning = (function(){
     function reset(){
         // called when a new map is loaded to reset the win state
         hasWon = false;
+        particleSystems = [];
+        timeSinceWin = 0;
     }
 
     function update(elapsedTime, entities){
@@ -51,6 +55,15 @@ MyGame.systems.winning = (function(){
             for (let edge = 0; edge < particleSystems.length; edge++){
                 particleSystems[edge].update(elapsedTime);
             }
+        }
+
+        if (hasWon){
+            timeSinceWin += elapsedTime;
+        }
+        if (timeSinceWin >= postWinDelay){
+            // advance to the next level
+            reset();
+            MyGame.Level.loadLevel(MyGame.Level.currentLevelNum + 1);
         }
 
     }

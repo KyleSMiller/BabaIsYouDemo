@@ -1,50 +1,9 @@
 function GameModel(levelFile, currentLevel) {
     "use strict";
     
-    // file reading will be implemented later - just hard-code a level to test
-    let tempLevel = `Level-1
-20 x 20
-hhhhhhhhhhhhhhhhhhhh
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h   llllllllllll   h
-h   llllllllllll   h
-h   llllllllllll   h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-h                  h
-hhhhhhhhhhhhhhhhhhhh
-                    
-                    
-                    
-                    
-                    
-     WIS    RIP     
-                    
-    wwwwwwwwwwww    
-         r          
-      b  r   f      
-         r          
-    wwwwwwwwwwww    
-                    
-     BIY    FIX     
-                    
-                    
-                    
-                    
-                    
-                    `
-
+    // start on level 0
+    let levelNum = 0;
+    MyGame.Level.loadLevel(levelNum);
 
     let gridWidth = null;
     let gridHeight = null;
@@ -90,7 +49,7 @@ hhhhhhhhhhhhhhhhhhhh
     function readLevel(){
         // TODO: read in level file
 
-        let levelArray = tempLevel.split(/\r?\n/);
+        let levelArray = MyGame.Level.currentLevel.split(/\r?\n/);
         
         let dimensions = levelArray[1].split("x");
         gridWidth = parseInt(dimensions[0]);
@@ -216,18 +175,22 @@ hhhhhhhhhhhhhhhhhhhh
         });
 
         MyGame.GameKeyboard.registerReload(function() {
-            gridWidth = null;
-            gridHeight = null;
-            cellSize = null;  // in canvas pixels. cells must be square
-            visualsGrid = [];
-            entityGrid = [];
-            MyGame.entities = [];
-            MyGame.systems.winning.reset();
-            initalize();            
+            newGame();             
         })
 
     }    
 
+    function newGame(){
+        gridWidth = null;
+        gridHeight = null;
+        cellSize = null;  // in canvas pixels. cells must be square
+        visualsGrid = [];
+        entityGrid = [];
+        MyGame.entities = [];
+        MyGame.systems.winning.reset();
+        levelNum += 1;
+        initalize();
+    }
 
     MyGame.entitiesAt = function(x, y){
         let entityList = [];
@@ -255,6 +218,9 @@ hhhhhhhhhhhhhhhhhhhh
         MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
         MyGame.systems.render.update(elapsedTime, MyGame.entities);
+        if (levelNum != MyGame.Level.currentLevelNum){
+            newGame();
+        }
     }
 
     initalize();
