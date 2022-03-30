@@ -250,11 +250,11 @@ hhhhhhhhhhhhhhhhhhhh
     }
     
     function update(elapsedTime){
-        MyGame.systems.render.update(elapsedTime, MyGame.entities);
         MyGame.systems.winning.update(elapsedTime, MyGame.entities);
         MyGame.systems.sinking.update(MyGame.entities);
         MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
+        MyGame.systems.render.update(elapsedTime, MyGame.entities);
     }
 
     initalize();
