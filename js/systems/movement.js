@@ -1,6 +1,8 @@
 MyGame.systems.movement = (function(){
     "use strict";
 
+    let playSound = true;
+
     function move(entity, xDist, yDist){
         // distance is measured in number of cells
 
@@ -38,13 +40,27 @@ MyGame.systems.movement = (function(){
             if (canMove){
                 entity.components.position.x = entity.components.position.x + xDist;
                 entity.components.position.y = entity.components.position.y + yDist;
+
+                // play move sound effect
+                if (entity.components.moveable && playSound){
+                    playSound = false;
+                    let sound = new Audio();
+                    sound.addEventListener('canplay', function(){ this.play(); });
+                    sound.src = 'sounds/move.mp3';
+                    sound.play();
+                }
             }
         }
         return canMove;
     }
 
+    function update(elapsedTime){
+        playSound = true;
+    }
+
     return {
-        move: move
+        move: move,
+        update: update
     };
 
 }());

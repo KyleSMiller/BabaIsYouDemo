@@ -225,6 +225,7 @@ function GameModel(levelFile, currentLevel) {
         MyGame.systems.sinking.update(MyGame.entities);
         MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
+        MyGame.systems.movement.update(elapsedTime);
         if (levelNum != MyGame.Level.currentLevelNum){
             nextLevel();
         }

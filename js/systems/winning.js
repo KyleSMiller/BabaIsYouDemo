@@ -3,13 +3,18 @@ MyGame.systems.winning = (function(){
 
     let hasWon = false;
     let particleSystems = [];
-    let postWinDelay = 1200;  // milliseconds to wait after winning before advancing to the next level
+    let postWinDelay = 2500;  // milliseconds to wait after winning before advancing to the next level
     let timeSinceWin = 0;
     
     function winGame(winningTile){
         hasWon = true;
         // TODO: advance to next level
-        console.log("you win!")
+        
+        let sound = new Audio();
+        sound.addEventListener('canplay', function(){ this.play(); });
+        sound.src = 'sounds/win.mp3';
+        sound.play();
+
         return MyGame.particles.win(winningTile);
     }
 

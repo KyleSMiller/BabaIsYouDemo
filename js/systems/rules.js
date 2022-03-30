@@ -62,7 +62,7 @@ MyGame.systems.rules = (function(){
 
     }
 
-    function newYouParticles(elapsedTime, prevYou, you){
+    function newYou(elapsedTime, prevYou, you){
         // check if new "you" is defined
         let isNewYou = false;
         if (prevYou.length === you.length){
@@ -93,7 +93,7 @@ MyGame.systems.rules = (function(){
         }
     }
 
-    function newWinParticles(elapsedTime, prevWin, win){
+    function newWin(elapsedTime, prevWin, win){
         // check if new "you" is defined
         let isNewWin = false;
         if (prevWin.length === win.length){
@@ -112,6 +112,12 @@ MyGame.systems.rules = (function(){
             for (let i = 0; i < win.length; i++){
                 particleSystems.push(MyGame.particles.newWin(win[i]));
             }
+
+            let sound = new Audio();
+            sound.addEventListener('canplay', function(){ this.play(); });
+            sound.src = 'sounds/newWin.mp3';
+            sound.play();
+
         }
 
         // update particles
@@ -163,11 +169,11 @@ MyGame.systems.rules = (function(){
             }
         }
 
-        newYouParticles(elapsedTime, prevYou, you);
+        newYou(elapsedTime, prevYou, you);
         prevYou = you;
         you = [];
 
-        newWinParticles(elapsedTime, prevWin, win);
+        newWin(elapsedTime, prevWin, win);
         prevWin = win;
         win = [];
 
