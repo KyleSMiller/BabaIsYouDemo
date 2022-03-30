@@ -51,7 +51,7 @@ hhhhhhhhhhhhhhhhhhhh
     let cellSize = null;  // in canvas pixels. cells must be square
     let visualsGrid = [];
     let entityGrid = [];
-
+    
     function decodeEntity(symbol, x, y){  // interpret a symbol in a level file and convert it to an entity
         let entity = null;
 
@@ -239,8 +239,8 @@ hhhhhhhhhhhhhhhhhhhh
     }
     
     function update(elapsedTime){
-        MyGame.systems.render.update(elapsedTime, MyGame.entities)
-        MyGame.systems.winning.update(MyGame.entities);
+        MyGame.systems.render.update(elapsedTime, MyGame.entities);
+        MyGame.systems.winning.update(elapsedTime, MyGame.entities);
         MyGame.systems.sinking.update(MyGame.entities);
         MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(MyGame.entities, entityGrid);

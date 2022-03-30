@@ -2,16 +2,20 @@ MyGame.systems.winning = (function(){
     "use strict";
 
     let hasWon = false;
+    let particleSystems = [];
 
-    function winGame(){
+    function winGame(winningTile){
         hasWon = true;
-        // TODO: particles, advance to next level, disable movement
+        // TODO: advance to next level, disable movement
         console.log("YOU WIN!");
+
+        return MyGame.particles.win(winningTile);
     }
 
-    function update(entities){
+    function update(elapsedTime, entities){
         let you = [];
         let win = [];
+        let winningTile = null;
 
         for (let id in entities) {
             let entity = entities[id];
@@ -28,6 +32,7 @@ MyGame.systems.winning = (function(){
             for (let j = 0; j < win.length; j++){
                 if (you[i].components.position.x === win[j].components.position.x && you[i].components.position.y === win[j].components.position.y){
                     wonThisTick = true;
+                    winningTile = win[j];
                 }
             }
             if (!wonThisTick){
@@ -38,7 +43,13 @@ MyGame.systems.winning = (function(){
         if (wonThisTick && !hasWon){
             // we only call win once per flag touch. 
             // don't call it repeatedly while standing on it
-            winGame();
+            particleSystems = winGame(winningTile);
+        }
+
+        if (particleSystems.length != 0){
+            for (let edge = 0; edge < particleSystems.length; edge++){
+                particleSystems[edge].update(elapsedTime);
+            }
         }
 
     }
