@@ -3,6 +3,7 @@ function GameModel(levelFile, currentLevel) {
     
     // start on level 0
     let levelNum = 0;
+    MyGame.Level.loadFile("levels-all.bbiy");
     MyGame.Level.loadLevel(levelNum);
 
     let gridWidth = null;
@@ -47,13 +48,12 @@ function GameModel(levelFile, currentLevel) {
     }
 
     function readLevel(){
-        // TODO: read in level file
-
         let levelArray = MyGame.Level.currentLevel.split(/\r?\n/);
         
         let dimensions = levelArray[1].split("x");
         gridWidth = parseInt(dimensions[0]);
         gridHeight = parseInt(dimensions[1]);
+
 
         let canvas = document.getElementById("canvas");
         cellSize = canvas.width / Math.min(gridHeight, gridWidth);  // use canvas width bc canvas is always square
@@ -64,14 +64,16 @@ function GameModel(levelFile, currentLevel) {
         // load visual elements (entities with no properties beyond rendering)
         for (let row = 0; row < visuals.length; row++){
             let cells = visuals[row].split("");
-            visualsGrid.push([]);
-            for (let cell = 0; cell < cells.length; cell++){
-                visualsGrid[row].push(cells[cell]);
-                
-                let decodedEntity = decodeEntity(cells[cell], cell, row)
-                if (decodedEntity != null){
-                    visualsGrid[row][cell] = decodedEntity;
-                    MyGame.entities.push(decodedEntity);
+            if (cells.length > 0){
+                visualsGrid.push([]);
+                for (let cell = 0; cell < cells.length; cell++){
+                    visualsGrid[row].push(cells[cell]);
+                    
+                    let decodedEntity = decodeEntity(cells[cell], cell, row)
+                    if (decodedEntity != null){
+                        visualsGrid[row][cell] = decodedEntity;
+                        MyGame.entities.push(decodedEntity);
+                    }
                 }
             }
         }
@@ -82,50 +84,53 @@ function GameModel(levelFile, currentLevel) {
         let catCell = null;
         for (let row = 0; row < entities.length; row++){
             let cells = entities[row].split("");
-            entityGrid.push([]);
-            for (let cell = 0; cell < cells.length; cell++){
-                entityGrid[row].push(cells[cell]);
-                
-                let decodedEntity = decodeEntity(cells[cell], cell, row)
-                if (decodedEntity != null){
+            if (cells.length > 0){  // ignore extra \n at end of file
+                entityGrid.push([]);
+                for (let cell = 0; cell < cells.length; cell++){
+                    entityGrid[row].push(cells[cell]);
                     
-                    // we want cat to be top layer, so we add it to the grid last
-                    if (decodedEntity.components.type.type === "cat"){
-                        cat = decodedEntity;
-                        catRow = row;
-                        catCell = cell;
-                    }
-                    else{
-                        entityGrid[row][cell] = decodedEntity;
-                        MyGame.entities.push(decodedEntity);
+                    let decodedEntity = decodeEntity(cells[cell], cell, row)
+                    if (decodedEntity != null){
+                        
+                        // we want cat to be top layer, so we add it to the grid last
+                        if (decodedEntity.components.type.type === "cat"){
+                            cat = decodedEntity;
+                            catRow = row;
+                            catCell = cell;
+                        }
+                        else{
+                            entityGrid[row][cell] = decodedEntity;
+                            MyGame.entities.push(decodedEntity);
+                        }
                     }
                 }
             }
         }
 
-        // always surround the arena with collidable hedges
+        // always surround the arena with collidable borders
+        // this would have been easy if level files included hedges in the entity layer instead of the visuals layer
         for (let i = 0; i < entityGrid[0].length; i++){  // top row
-            let hedge = Hedge(i, 0, cellSize);
-            hedge.addComponent(MyGame.components.Stop({}));
-            entityGrid[0][i] = hedge;
-            MyGame.entities.push(hedge);
+            let border = Border(i, 0, cellSize);
+            border.addComponent(MyGame.components.Stop({}));
+            entityGrid[0][i] = border;
+            MyGame.entities.push(border);
         }
         for (let i = 0 ; i < entityGrid[entityGrid.length - 1].length; i++){  // bottom row
-            let hedge = Hedge(i, entityGrid.length - 1, cellSize);
-            hedge.addComponent(MyGame.components.Stop({}));
-            entityGrid[entityGrid.length - 1][i] = hedge;
-            MyGame.entities.push(hedge);
+            let border = Border(i, entityGrid.length - 1, cellSize);
+            border.addComponent(MyGame.components.Stop({}));
+            entityGrid[entityGrid.length - 1][i] = border;
+            MyGame.entities.push(border);
         }
         for (let i = 0; i < entityGrid.length; i++){  // left and right edges
-            let hedge = Hedge(0, i, cellSize);
-            hedge.addComponent(MyGame.components.Stop({}));
-            entityGrid[i][0] = hedge;
-            MyGame.entities.push(hedge);
+            let border = Border(0, i, cellSize);
+            border.addComponent(MyGame.components.Stop({}));
+            entityGrid[i][0] = border;
+            MyGame.entities.push(border);
             
-            hedge = Hedge(entityGrid.length - 1, i, cellSize);
-            hedge.addComponent(MyGame.components.Stop({}));
+            border = Hedge(entityGrid.length - 1, i, cellSize);
+            border.addComponent(MyGame.components.Stop({}));
             entityGrid[i][entityGrid.length - 1]
-            MyGame.entities.push(hedge);
+            MyGame.entities.push(border);
         }
 
         // render cat on top of everything

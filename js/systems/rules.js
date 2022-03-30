@@ -81,6 +81,12 @@ MyGame.systems.rules = (function(){
             for (let i = 0; i < you.length; i++){
                 particleSystems.push(MyGame.particles.newYou(you[i]));
             }
+
+            let sound = new Audio();
+            sound.addEventListener('canplay', function(){ this.play(); });
+            sound.src = 'sounds/newWin.mp3';
+            sound.play();
+
         }
 
         // update particles

@@ -160,6 +160,14 @@ let Hedge = function(x, y, size){
     return hedge;
 }
 
+let Border = function(x, y, size){
+    let border = Entity.createEntity();
+    border.addComponent(MyGame.components.Position({ x: x, y: y }));
+    border.addComponent(MyGame.components.Type({type: "border"}));
+
+    return border;
+}
+
 // --- Rule Blocks ---
 
 let IsBlock = function(x, y, size){
