@@ -214,6 +214,18 @@ hhhhhhhhhhhhhhhhhhhh
                 }
             }
         });
+
+        MyGame.GameKeyboard.registerReload(function() {
+            gridWidth = null;
+            gridHeight = null;
+            cellSize = null;  // in canvas pixels. cells must be square
+            visualsGrid = [];
+            entityGrid = [];
+            MyGame.entities = [];
+            MyGame.systems.winning.reset();
+            initalize();            
+        })
+
     }    
 
 
@@ -231,7 +243,6 @@ hhhhhhhhhhhhhhhhhhhh
 
         return entityList;
     }
-
 
     function initalize(){
         readLevel();
