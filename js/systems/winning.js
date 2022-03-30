@@ -6,10 +6,14 @@ MyGame.systems.winning = (function(){
 
     function winGame(winningTile){
         hasWon = true;
-        // TODO: advance to next level, disable movement
-        console.log("YOU WIN!");
-
+        // TODO: advance to next level
+        console.log("you win!")
         return MyGame.particles.win(winningTile);
+    }
+
+    function reset(){
+        // called when a new map is loaded to reset the win state
+        hasWon = false;
     }
 
     function update(elapsedTime, entities){
@@ -35,9 +39,6 @@ MyGame.systems.winning = (function(){
                     winningTile = win[j];
                 }
             }
-            if (!wonThisTick){
-                hasWon = false;
-            }
         }
 
         if (wonThisTick && !hasWon){
@@ -55,7 +56,8 @@ MyGame.systems.winning = (function(){
     }
 
     return {
-        update: update
+        update: update,
+        reset: reset
     };
 
 }());
