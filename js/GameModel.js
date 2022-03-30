@@ -243,7 +243,7 @@ hhhhhhhhhhhhhhhhhhhh
         MyGame.systems.winning.update(elapsedTime, MyGame.entities);
         MyGame.systems.sinking.update(MyGame.entities);
         MyGame.systems.kill.update(MyGame.entities);
-        MyGame.systems.rules.update(MyGame.entities, entityGrid);
+        MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
     }
 
     initalize();

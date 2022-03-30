@@ -68,7 +68,25 @@ MyGame.particles = (function (){
                 speed: { mean: 10, stdev: 25 },
                 lifetime: { mean: 0.25, stdev: 0.1 },
                 duration: 0.75,  // in seconds
-                image: "images/particle_newWin.png"
+                image: "images/particle_win.png"
+            }));
+        };
+        
+        return particleSystems;
+    }
+
+    let newYou = function(entity){
+
+        let particleSystems = [];
+        let edges = getEdges(entity);
+        for (let i = 0; i < edges.length; i++){
+            particleSystems.push(MyGame.systems.ParticleSystem({
+                range: edges[i],
+                size: { mean: 5, stdev: 2 },
+                speed: { mean: 10, stdev: 25 },
+                lifetime: { mean: 0.25, stdev: 0.1 },
+                duration: 0.75,  // in seconds
+                image: "images/particle_newYou.png"
             }));
         };
         
@@ -76,6 +94,8 @@ MyGame.particles = (function (){
     }
 
     return {
-        win: win
+        win: win,
+        newWin: newWin,
+        newYou: newYou
     };
 }());

@@ -2,6 +2,9 @@ MyGame.systems.rules = (function(){
     "use strict";
 
     let rules = {}  // "type": "rule"
+    let prevYou = [];
+    let prevWin = [];
+    let particleSystems = [];
 
     function createRules(entity, grid){
         let x = entity.components.position.x;
@@ -59,7 +62,69 @@ MyGame.systems.rules = (function(){
 
     }
 
-    function update(entities, grid){
+    function newYouParticles(elapsedTime, prevYou, you){
+        // check if new "you" is defined
+        let isNewYou = false;
+        if (prevYou.length === you.length){
+            for (let i = 0; i < you.length; i++){
+                if (prevYou[i] !== you[i]){
+                    isNewYou = true;
+                }
+            }
+        }
+        else{
+            isNewYou = true;
+        }
+
+        // if new "you" is defined, create particle systems
+        if (isNewYou){
+            for (let i = 0; i < you.length; i++){
+                particleSystems.push(MyGame.particles.newYou(you[i]));
+            }
+        }
+
+        // update particles
+        if (particleSystems.length != 0){
+            for (let i = 0; i < particleSystems.length; i++){
+                for (let edge = 0; edge < particleSystems[i].length; edge++){
+                    particleSystems[i][edge].update(elapsedTime);
+                }
+            }
+        }
+    }
+
+    function newWinParticles(elapsedTime, prevWin, win){
+        // check if new "you" is defined
+        let isNewWin = false;
+        if (prevWin.length === win.length){
+            for (let i = 0; i < win.length; i++){
+                if (prevWin[i] !== win[i]){
+                    isNewWin = true;
+                }
+            }
+        }
+        else{
+            isNewWin = true;
+        }
+
+        // if new "you" is defined, create particle systems
+        if (isNewWin){
+            for (let i = 0; i < win.length; i++){
+                particleSystems.push(MyGame.particles.newWin(win[i]));
+            }
+        }
+
+        // update particles
+        if (particleSystems.length != 0){
+            for (let i = 0; i < particleSystems.length; i++){
+                for (let edge = 0; edge < particleSystems[i].length; edge++){
+                    particleSystems[i][edge].update(elapsedTime);
+                }
+            }
+        }
+    }
+
+    function update(elapsedTime, entities, grid){
         // remove components from all entities
         for (let i = 0; i < entities.length; i++){
             if (entities[i].components.associatedBlock){  // if it has an associated block, a rule can be applied to it
@@ -78,13 +143,35 @@ MyGame.systems.rules = (function(){
         }
 
         // apply the rules defined by the rule blocks
+        let you = [];
+        let win = [];
         for (let i = 0; i < entities.length; i++){
             if (entities[i].components.associatedBlock){
                 if (rules[entities[i].components.associatedBlock.block]){
                     entities[i].addComponent(rules[entities[i].components.associatedBlock.block]());
+
+                    // keep track of "you" to detect if a new "you" is defined
+                    if (entities[i].components.moveable){
+                        you.push(entities[i]);
+                    }
+                    // keep track of "win" to detect if a new "win" is defined
+                    if (entities[i].components.win){
+                        win.push(entities[i]);
+                    }
+
                 }
             }
         }
+
+        newYouParticles(elapsedTime, prevYou, you);
+        prevYou = you;
+        you = [];
+
+        newWinParticles(elapsedTime, prevWin, win);
+        prevWin = win;
+        win = [];
+
+
     }
 
     return {
