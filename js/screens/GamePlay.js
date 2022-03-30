@@ -25,7 +25,7 @@ MyGame.screens["game-screen"] = (function(input){
         prevTime = timeStamp;
 
         processInput(elapsedTime);
-        update(elapsedTime);
+        let cancelNextRequest = update(elapsedTime);
 
         if (!cancelNextRequest){
             requestAnimationFrame(gameLoop);

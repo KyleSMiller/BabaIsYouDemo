@@ -11,6 +11,8 @@ function GameModel(levelFile, currentLevel) {
     let cellSize = null;  // in canvas pixels. cells must be square
     let visualsGrid = [];
     let entityGrid = [];
+
+    let cancelNextRequest = false;
     
     function decodeEntity(symbol, x, y){  // interpret a symbol in a level file and convert it to an entity
         let entity = null;
@@ -48,6 +50,13 @@ function GameModel(levelFile, currentLevel) {
     }
 
     function readLevel(){
+        if (MyGame.Level.currentLevel === "<<DONE>>"){
+            console.log("YOU WIN!");
+            cancelNextRequest = true;
+            MyGame.manager.openScreen("main-menu-screen");
+            return;
+        }
+
         let levelArray = MyGame.Level.currentLevel.split(/\r?\n/);
         
         let dimensions = levelArray[1].split("x");
@@ -234,6 +243,7 @@ function GameModel(levelFile, currentLevel) {
         if (levelNum != MyGame.Level.currentLevelNum){
             nextLevel();
         }
+        return cancelNextRequest;
     }
 
     initalize();

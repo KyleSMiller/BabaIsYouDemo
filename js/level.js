@@ -228,10 +228,17 @@ hhhhhhhhhhhhhhhhhhhh
     }
 
     function loadLevel(levelNum){
-        currentLevelNum = levelNum;
-        console.log("loading level " + currentLevelNum);
 
-        currentLevel = levels[levelNum];
+        if (levelNum < levels.length){
+            currentLevelNum = levelNum;
+            console.log("loading level " + currentLevelNum);
+
+            currentLevel = levels[levelNum];
+        }
+        else{
+            currentLevelNum = levelNum;
+            currentLevel = "<<DONE>>";
+        }
         return currentLevel;
     }
 
