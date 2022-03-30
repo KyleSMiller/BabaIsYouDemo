@@ -10,7 +10,7 @@ MyGame.systems.ParticleSystem = function(spec){
     function create(){
         let size = Random.nextGaussian(spec.size.mean, spec.size.stdev);
 
-        let placeAt = { x: Math.random() * (spec.range.x1 - spec.range.x2) + spec.range.x1,
+        let placeAt = { x: Math.random() * (spec.range.x1 - spec.range.x2) + spec.range.x2,
                         y: Math.random() * (spec.range.y2 - spec.range.y1) + spec.range.y1 };
 
         let p = {
