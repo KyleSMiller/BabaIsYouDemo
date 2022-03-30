@@ -54,6 +54,7 @@ function GameModel(levelFile, currentLevel) {
             console.log("YOU WIN!");
             cancelNextRequest = true;
             MyGame.manager.openScreen("main-menu-screen");
+            MyGame.Music.stop();
             return;
         }
 
@@ -233,6 +234,8 @@ function GameModel(levelFile, currentLevel) {
         registerKeys();
     }
     
+    MyGame.Music.play();
+
     function update(elapsedTime){
         MyGame.systems.render.update(elapsedTime, MyGame.entities);
         MyGame.systems.winning.update(elapsedTime, MyGame.entities);
@@ -240,6 +243,9 @@ function GameModel(levelFile, currentLevel) {
         MyGame.systems.kill.update(MyGame.entities);
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
         MyGame.systems.movement.update(elapsedTime);
+        MyGame.Music.shouldPlay = true;
+        
+        // advance level
         if (levelNum != MyGame.Level.currentLevelNum){
             nextLevel();
         }
