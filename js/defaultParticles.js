@@ -49,7 +49,7 @@ MyGame.particles = (function (){
                 size: { mean: 5, stdev: 2 },
                 speed: { mean: 10, stdev: 25 },
                 lifetime: { mean: 0.25, stdev: 0.1 },
-                duration: 1,  // in seconds
+                duration: 1.5,  // in seconds
                 image: "images/particle_win.png"
             }));
         };
