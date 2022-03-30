@@ -175,12 +175,19 @@ function GameModel(levelFile, currentLevel) {
         });
 
         MyGame.GameKeyboard.registerReload(function() {
-            newGame();             
+            gridWidth = null;
+            gridHeight = null;
+            cellSize = null;  // in canvas pixels. cells must be square
+            visualsGrid = [];
+            entityGrid = [];
+            MyGame.entities = [];
+            MyGame.systems.winning.reset();
+            initalize();            
         })
 
     }    
 
-    function newGame(){
+    function nextLevel(){
         gridWidth = null;
         gridHeight = null;
         cellSize = null;  // in canvas pixels. cells must be square
@@ -219,7 +226,7 @@ function GameModel(levelFile, currentLevel) {
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
         MyGame.systems.render.update(elapsedTime, MyGame.entities);
         if (levelNum != MyGame.Level.currentLevelNum){
-            newGame();
+            nextLevel();
         }
     }
 
