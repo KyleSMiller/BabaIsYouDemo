@@ -6,7 +6,7 @@ let Cat = function(x, y, size){
     let cat = Entity.createEntity();
     cat.addComponent(MyGame.components.Position({ x: x, y: y }));
     cat.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/cat.png",
+        image: MyGame.assets["cat"],
         size: { width: size, height: size },
         animated: false,
     }));
@@ -20,7 +20,7 @@ let Rock = function(x, y, size){
     let rock = Entity.createEntity();
     rock.addComponent(MyGame.components.Position({ x: x, y: y }));
     rock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/rocks.png",
+        image: MyGame.assets["rocks"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -41,7 +41,7 @@ let Wall = function(x, y, size){
     let wall = Entity.createEntity();
     wall.addComponent(MyGame.components.Position({ x: x, y: y }));
     wall.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wall.png",
+        image: MyGame.assets["wall"],
         size: { width: size, height: size },
         animated: false
     }));
@@ -55,7 +55,7 @@ let Flag = function(x, y, size){
     let flag = Entity.createEntity();
     flag.addComponent(MyGame.components.Position({ x: x, y: y }));
     flag.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/flag.png",
+        image: MyGame.assets["flag"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -76,7 +76,7 @@ let Floor = function(x, y, size){
     let floor = Entity.createEntity();
     floor.addComponent(MyGame.components.Position({ x: x, y: y }));
     floor.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/floor.png",
+        image: MyGame.assets["floor"],
         size: { width: size, height: size },
         animated: false
     }));
@@ -89,7 +89,7 @@ let Grass = function(x, y, size){
     let grass = Entity.createEntity();
     grass.addComponent(MyGame.components.Position({ x: x, y: y }));
     grass.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/grass.png",
+        image: MyGame.assets["grass"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -109,7 +109,7 @@ let Water = function(x, y, size){
     let water = Entity.createEntity();
     water.addComponent(MyGame.components.Position({ x: x, y: y }));
     water.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/water_color.png",
+        image: MyGame.assets["water"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -130,7 +130,7 @@ let Lava = function(x, y, size){
     let lava = Entity.createEntity();
     lava.addComponent(MyGame.components.Position({ x: x, y: y }));
     lava.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/Lava_color.png",
+        image: MyGame.assets["lava"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -151,7 +151,7 @@ let Hedge = function(x, y, size){
     let hedge = Entity.createEntity();
     hedge.addComponent(MyGame.components.Position({ x: x, y: y }));
     hedge.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/hedge.png",
+        image: MyGame.assets["hedge"],
         size: { width: size, height: size },
         animated: false
     }));
@@ -174,7 +174,7 @@ let IsBlock = function(x, y, size){
     let isBlock = Entity.createEntity();
     isBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     isBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordIs.png",
+        image: MyGame.assets["wordIs"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -195,7 +195,7 @@ let YouBlock = function(x, y, size){
     let youBlock = Entity.createEntity();
     youBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     youBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordYou.png",
+        image: MyGame.assets["wordYou"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -217,7 +217,7 @@ let StopBlock = function(x, y, size){
     let stopBlock = Entity.createEntity();
     stopBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     stopBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordStop.png",
+        image: MyGame.assets["wordStop"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -239,7 +239,7 @@ let PushBlock = function(x, y, size){
     let pushBlock = Entity.createEntity();
     pushBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     pushBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordPush.png",
+        image: MyGame.assets["wordPush"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -261,7 +261,7 @@ let WinBlock = function(x, y, size){
     let winBlock = Entity.createEntity();
     winBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     winBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordWin.png",
+        image: MyGame.assets["wordWin"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -283,7 +283,7 @@ let SinkBlock = function(x, y, size){
     let sinkBlock = Entity.createEntity();
     sinkBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     sinkBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordSink.png",
+        image: MyGame.assets["wordSink"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -305,7 +305,7 @@ let KillBlock = function(x, y, size){
     let killBlock = Entity.createEntity();
     killBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     killBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordKill.png",
+        image: MyGame.assets["wordKill"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -327,7 +327,7 @@ let BabaBlock = function(x, y, size){
     let babaBlock = Entity.createEntity();
     babaBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     babaBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordBaba.png",
+        image: MyGame.assets["wordBaba"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -349,7 +349,7 @@ let WallBlock = function(x, y, size){
     let wallBlock = Entity.createEntity();
     wallBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     wallBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordWall.png",
+        image: MyGame.assets["wordWall"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -371,7 +371,7 @@ let RockBlock = function(x, y, size){
     let rockBlock = Entity.createEntity();
     rockBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     rockBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordRock.png",
+        image: MyGame.assets["wordRock"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -393,7 +393,7 @@ let FlagBlock = function(x, y, size){
     let flagBlock = Entity.createEntity();
     flagBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     flagBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordFlag.png",
+        image: MyGame.assets["wordFlag"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -415,7 +415,7 @@ let LavaBlock = function(x, y, size){
     let lavaBlock = Entity.createEntity();
     lavaBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     lavaBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordLava.png",
+        image: MyGame.assets["wordLava"],
         size: { width: size, height: size },
         animated: true,
         animation: {
@@ -437,7 +437,7 @@ let WaterBlock = function(x, y, size){
     let waterBlock = Entity.createEntity();
     waterBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
     waterBlock.addComponent(MyGame.components.Appearance({
-        imageSrc: "images/wordWater.png",
+        image: MyGame.assets["wordWater"],
         size: { width: size, height: size },
         animated: true,
         animation: {

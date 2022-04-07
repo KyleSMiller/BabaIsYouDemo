@@ -1,12 +1,12 @@
 MyGame.components.Appearance = function(spec){
     "use strict";
 
-    let image = new Image();
-    let isReady = false;
-    image.onload = function(){
-        isReady = true;
-    }
-    image.src = spec.imageSrc;
+    // let image = new Image();
+    // let isReady = false;
+    // image.onload = function(){
+    //     isReady = true;
+    // }
+    // image.src = spec.imageSrc;
 
     let timeSinceFrame = 0;
 
@@ -26,9 +26,9 @@ MyGame.components.Appearance = function(spec){
 
     let api = {
         get name() { return "appearance"; },
-        get imageSrc() { return spec.imageSrc; },
-        get imageReady() { return isReady; },
-        get image() { return image; },
+        // get imageSrc() { return spec.imageSrc; },
+        // get imageReady() { return isReady; },
+        get image() { return spec.image; },
         get size() { return spec.size; },
         get subTextureWidth() { return spec.animation.subTextureWidth },
         get subTextureHeight() { return spec.animation.subTextureHeight },

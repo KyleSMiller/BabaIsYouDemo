@@ -50,7 +50,7 @@ MyGame.particles = (function (){
                 speed: { mean: 10, stdev: 25 },
                 lifetime: { mean: 0.25, stdev: 0.1 },
                 duration: 1.5,  // in seconds
-                image: "images/particle_win.png"
+                image: MyGame.assets["particle_win"]
             }));
         };
         
@@ -68,7 +68,7 @@ MyGame.particles = (function (){
                 speed: { mean: 10, stdev: 25 },
                 lifetime: { mean: 0.25, stdev: 0.1 },
                 duration: 0.75,  // in seconds
-                image: "images/particle_win.png"
+                image: MyGame.assets["particle_win"]
             }));
         };
         
@@ -86,7 +86,7 @@ MyGame.particles = (function (){
                 speed: { mean: 10, stdev: 25 },
                 lifetime: { mean: 0.25, stdev: 0.1 },
                 duration: 0.75,  // in seconds
-                image: "images/particle_newYou.png"
+                image: MyGame.assets["particle_newYou"]
             }));
         };
         

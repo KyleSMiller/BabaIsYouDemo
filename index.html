@@ -7,7 +7,7 @@
 
 </head>
 
-<body onload = "MyGame.manager.initialize();">
+<body>  <!-- onload = "MyGame.manager.initialize();"> -->
     <div id="background">
     <div id= "game">
         
@@ -93,7 +93,9 @@
         };
     </script>
     
-    <script src = "js/screens/Manager.js"></script>
+    <script data-main = "js/loader" src = "js/require.js"></script>
+
+    <!-- <script src = "js/screens/Manager.js"></script>
 
     <script src = "js/Input.js"></script>
     <script src = "js/GameKeyboard.js"></script>
@@ -102,7 +104,7 @@
     <script src = "js/level.js"></script>
     <script src = "js/music.js"></script>
 
-    <script src = "js/render//graphics.js"></script>
+    <script src = "js/render/graphics.js"></script>
     <script src = "js/render/texture.js"></script>
     <script src = "js/render/animatedTexture.js"></script>
     <script src = "js/render/particles.js"></script>
@@ -136,7 +138,7 @@
     <script src = "js/screens/GamePlay.js"></script>
     <script src = "js/screens/Credits.js"></script>
     <script src = "js/screens/Controls.js"></script>
-    <script src = "js/screens/MainMenu.js"></script>
+    <script src = "js/screens/MainMenu.js"></script> -->
 
     
 </body>

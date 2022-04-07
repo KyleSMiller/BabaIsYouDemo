@@ -13,27 +13,22 @@ MyGame.systems.render = (function(){
                 let cellSize = entity.components.appearance.size.width;
 
                 if (entity.components.appearance.animated){
-                    if (entity.components.appearance.imageReady){
-                        MyGame.render.AnimatedTexture.render({
-                            image: entity.components.appearance.image,
-                            center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
-                            size: entity.components.appearance.size,
-                            subTextureWidth: entity.components.appearance.subTextureWidth,
-                            subTextureHeight: entity.components.appearance.subTextureHeight,
-                            index: entity.components.appearance.index
-                        });
-                        entity.components.appearance.nextFrame(elapsedTime);
-                        
-                    }
+                    MyGame.render.AnimatedTexture.render({
+                        image: entity.components.appearance.image,
+                        center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
+                        size: entity.components.appearance.size,
+                        subTextureWidth: entity.components.appearance.subTextureWidth,
+                        subTextureHeight: entity.components.appearance.subTextureHeight,
+                        index: entity.components.appearance.index
+                    });
+                    entity.components.appearance.nextFrame(elapsedTime);
                 }
                 else{
-                    if (entity.components.appearance.imageReady){
-                        MyGame.render.Texture.render({
-                            image: entity.components.appearance.image,
-                            center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
-                            size: entity.components.appearance.size
-                        });
-                    }
+                    MyGame.render.Texture.render({
+                        image: entity.components.appearance.image,
+                        center: { x: x * cellSize + (cellSize / 2), y: y * cellSize + (cellSize / 2) },
+                        size: entity.components.appearance.size
+                    });
                 }
             }
         }

@@ -1,21 +1,19 @@
-MyGame.render.Particles = function(particles, graphics, imageSrc){
+MyGame.render.Particles = function(particles, graphics, image){
     "use strict";
 
-    let image = new Image();
-    let isReady = false;
+    // let image = new Image();
+    // let isReady = false;
 
-    image.onload = function(){
-        isReady = true;
-    }
-    image.src = imageSrc;
+    // image.onload = function(){
+    //     isReady = true;
+    // }
+    // image.src = imageSrc;
 
     function render(){
-        if (isReady){
-            Object.getOwnPropertyNames(particles).forEach(function(value){
-                let particle = particles[value];
-                graphics.drawTexture({image: image, center: particle.center, rotation: particle.rotation, size: particle.size});
-            });
-        }
+        Object.getOwnPropertyNames(particles).forEach(function(value){
+            let particle = particles[value];
+            graphics.drawTexture({image: image, center: particle.center, rotation: particle.rotation, size: particle.size});
+        });
     }
 
     return {
