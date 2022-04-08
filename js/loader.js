@@ -166,6 +166,9 @@ MyGame.loader = (function() {
         }];
 
     let assetOrder = [{
+            key: 'levels',
+            source: '/../levels-all.bbiy'
+        },{
             key: 'cat',
             source: '/images/cat.png'
         }, {
@@ -335,7 +338,7 @@ MyGame.loader = (function() {
 
         if (fileExtension) {
             xhr.open('GET', source, true);
-            xhr.responseType = (fileExtension === 'txt' || fileExtension === "bbiy") ? 'text' : 'blob';
+            xhr.responseType = (fileExtension === 'txt' || fileExtension === 'bbiy') ? 'text' : 'blob';
 
             xhr.onload = function() {
                 let asset = null;
@@ -344,14 +347,18 @@ MyGame.loader = (function() {
                         asset = new Image();
                     } else if (fileExtension === 'mp3') {
                         asset = new Audio();
+                    } else if (fileExtension === 'txt' || fileExtension === 'bbiy') {
+                        if (onSuccess) { onSuccess(xhr.responseText); }
                     } else {
                         if (onError) { onError('Unknown file extension: ' + fileExtension); }
                     }
-                    asset.onload = function() {
-                        window.URL.revokeObjectURL(asset.src);
-                        if (onSuccess) { onSuccess(asset); }
-                    };
-                    asset.src = window.URL.createObjectURL(xhr.response);
+                    if (asset !== null){
+                        asset.onload = function() {
+                            window.URL.revokeObjectURL(asset.src);
+                            if (onSuccess) { onSuccess(asset); }
+                        };
+                        asset.src = window.URL.createObjectURL(xhr.response);
+                    }
                 } else {
                     if (onError) { onError('Failed to retrieve: ' + source); }
                 }

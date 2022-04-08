@@ -3,7 +3,7 @@ function GameModel(levelFile, currentLevel) {
     
     // start on level 0
     let levelNum = 0;
-    MyGame.Level.loadFile("levels-all.bbiy");
+    MyGame.Level.loadLevelFile();
     MyGame.Level.loadLevel(levelNum);
 
     let gridWidth = null;
