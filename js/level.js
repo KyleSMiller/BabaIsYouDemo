@@ -34,7 +34,8 @@ MyGame.Level = (function(){
         loadLevelFile: loadLevelFile,
         loadLevel: loadLevel,
         get currentLevelNum() { return currentLevelNum; },
-        get currentLevel() { return currentLevel; }
+        get currentLevel() { return currentLevel; },
+        get levelCount() { return levels.length; }
     }
 
 }());

@@ -1,10 +1,10 @@
 function GameModel(levelFile, currentLevel) {
     "use strict";
     
-    // start on level 0
-    let levelNum = 0;
-    MyGame.Level.loadLevelFile();
-    MyGame.Level.loadLevel(levelNum);
+    // // start on level 0
+    // let levelNum = 0;
+    // MyGame.Level.loadLevelFile();
+    // MyGame.Level.loadLevel(levelNum);
 
     let gridWidth = null;
     let gridHeight = null;
@@ -214,6 +214,16 @@ function GameModel(levelFile, currentLevel) {
         initalize();
     }
 
+    function clearLevel(){
+        gridWidth = null;
+        gridHeight = null;
+        cellSize = null;  // in canvas pixels. cells must be square
+        visualsGrid = [];
+        entityGrid = [];
+        MyGame.entities = [];
+        MyGame.systems.winning.reset();
+    }
+
     MyGame.entitiesAt = function(x, y){
         let entityList = [];
 
@@ -245,9 +255,13 @@ function GameModel(levelFile, currentLevel) {
         MyGame.systems.movement.update(elapsedTime);
         MyGame.Music.shouldPlay = true;
         
-        // advance level
-        if (levelNum != MyGame.Level.currentLevelNum){
-            nextLevel();
+        // return to main menu after finishing level
+        if (currentLevel != MyGame.Level.currentLevelNum){
+            cancelNextRequest = true;
+            MyGame.manager.openScreen("main-menu-screen");
+            MyGame.Music.stop();
+            clearLevel();
+            //nextLevel();
         }
         return cancelNextRequest;
     }

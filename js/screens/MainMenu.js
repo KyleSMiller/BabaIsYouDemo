@@ -7,12 +7,14 @@ MyGame.screens["main-menu-screen"] = (function(game){
     let prevTime = performance.now();
 
     function initialize() {
-        let newGameButton = document.getElementById("new-game-button");
+        // let newGameButton = document.getElementById("new-game-button");
+        let levelSelectButton = document.getElementById("level-select-button");
         let controlsButton = document.getElementById("controls-button");
         let creditsButton = document.getElementById("credits-button");
         
         menuButtons = {
-            'game-screen': newGameButton,
+            // 'game-screen': newGameButton,
+            'level-select-screen': levelSelectButton,
             'controls-screen': controlsButton,
             'credits-screen': creditsButton
         }

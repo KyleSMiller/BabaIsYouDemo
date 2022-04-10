@@ -5,11 +5,9 @@ MyGame.screens["game-screen"] = (function(input){
     let cancelNextRequest = true;
     let model = null;
     let levelFile = "file://level-all.bbiy";
-    let currentLevel = null;
 
     function initialize() {
         console.log("game initalizing...");
-        currentLevel = 0;
     }
 
     function processInput(elapsedTime){
@@ -17,7 +15,7 @@ MyGame.screens["game-screen"] = (function(input){
     }
 
     function update(elapsedTime){
-        model.update(elapsedTime);
+        return model.update(elapsedTime);
     }
 
     function gameLoop(timeStamp){
@@ -34,7 +32,7 @@ MyGame.screens["game-screen"] = (function(input){
     }
 
     function run(){
-        model = GameModel(levelFile, currentLevel);
+        model = GameModel(levelFile, MyGame.Level.currentLevelNum);
 
         prevTime = performance.now();
         cancelNextRequest = false;

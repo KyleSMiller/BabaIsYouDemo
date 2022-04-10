@@ -8,8 +8,7 @@ MyGame.systems.winning = (function(){
     
     function winGame(winningTile){
         hasWon = true;
-        // TODO: advance to next level
-        
+                
         let sound = new Audio();
         sound.addEventListener('canplay', function(){ this.play(); });
         sound.src = 'sounds/win.mp3';
@@ -66,7 +65,7 @@ MyGame.systems.winning = (function(){
             timeSinceWin += elapsedTime;
         }
         if (timeSinceWin >= postWinDelay){
-            // advance to the next level
+            // reset win state after victory
             reset();
             MyGame.Level.loadLevel(MyGame.Level.currentLevelNum + 1);
         }

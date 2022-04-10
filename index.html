@@ -13,7 +13,8 @@
         
         <div id="main-menu-screen" class="screen">
             <ul class="menu">
-                <li><button id = "new-game-button">NEW&nbsp;GAME</button></li>
+                <!-- <li><button id = "new-game-button">NEW&nbsp;GAME</button></li> -->
+                <li><button id = "level-select-button">LEVELS</button></li>
                 <li><button id = "controls-button">CONTROLS</button></li>
                 <li><button id = "credits-button">CREDITS</button></li>
             </ul>
@@ -21,6 +22,11 @@
         
         <div id= "game-screen" class="screen">
             <canvas id="canvas" width="500" height="500" style="width: 100%; height: 100%"></canvas>
+        </div>
+
+        <div id="level-select-screen" class="screen">
+            <ul id="level-select-list" class="menu">
+            </ul>
         </div>
 
         <div id="controls-screen" class="screen">
@@ -94,51 +100,6 @@
     </script>
     
     <script data-main = "js/loader" src = "js/require.js"></script>
-
-    <!-- <script src = "js/screens/Manager.js"></script>
-
-    <script src = "js/Input.js"></script>
-    <script src = "js/GameKeyboard.js"></script>
-    <script src = "js/MenuKeyboard.js"></script>
-    <script src = "js/random.js"></script>
-    <script src = "js/level.js"></script>
-    <script src = "js/music.js"></script>
-
-    <script src = "js/render/graphics.js"></script>
-    <script src = "js/render/texture.js"></script>
-    <script src = "js/render/animatedTexture.js"></script>
-    <script src = "js/render/particles.js"></script>
-
-    <script src = "js/components/moveable.js"></script>
-    <script src = "js/components/position.js"></script>
-    <script src = "js/components/appearance.js"></script>
-    <script src = "js/components/stop.js"></script>
-    <script src = "js/components/type.js"></script>
-    <script src = "js/components/win.js"></script>
-    <script src = "js/components/sink.js"></script>
-    <script src = "js/components/kill.js"></script>
-    <script src = "js/components/associatedBlock.js"></script>
-    <script src = "js/components/objectBlock.js"></script>
-    <script src = "js/components/rule.js"></script>
-    <script src = "js/components/pushable.js"></script>
-
-    <script src = "js/systems/movement.js"></script>
-    <script src = "js/systems/render.js"></script>
-    <script src = "js/systems/winning.js"></script>
-    <script src = "js/systems/sinking.js"></script>
-    <script src = "js/systems/kill.js"></script>
-    <script src = "js/systems/rules.js"></script>
-    <script src = "js/systems/particleSystem.js"></script>
-
-    <script src = "js/entity.js"></script>
-    <script src = "js/defaultEntities.js"></script>
-    <script src = "js/defaultParticles.js"></script>
-    <script src = "js/GameModel.js"></script>
-
-    <script src = "js/screens/GamePlay.js"></script>
-    <script src = "js/screens/Credits.js"></script>
-    <script src = "js/screens/Controls.js"></script>
-    <script src = "js/screens/MainMenu.js"></script> -->
 
     
 </body>

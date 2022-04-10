@@ -160,6 +160,10 @@ MyGame.loader = (function() {
             message: 'Controls screen loaded',
             onComplete: null
         }, {
+            scripts: ['screens/LevelSelect'],
+            message: 'Level select menu loaded',
+            onComplete: null
+        }, {
             scripts: ['screens/MainMenu'],
             message: 'Main menu loaded',
             onComplete: null
