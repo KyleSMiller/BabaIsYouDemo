@@ -32,6 +32,46 @@ MyGame.GameKeyboard = (function(input) {
         reload: function(){console.log("reload");}
     };
 
+    that.up = function() {
+        for (let id in MyGame.entities){
+            let entity = MyGame.entities[id];
+            if (entity.components["moveable"]){
+                MyGame.systems.movement.move(entity, 0, -1);
+            }
+        }
+    };
+
+    that.down = function() {
+        for (let id in MyGame.entities){
+            let entity = MyGame.entities[id];
+            if (entity.components["moveable"]){
+                MyGame.systems.movement.move(entity, 0, 1);
+            }
+        }
+    };
+
+    that.left = function() {
+        for (let id in MyGame.entities){
+            let entity = MyGame.entities[id];
+            if (entity.components["moveable"]){
+                MyGame.systems.movement.move(entity, -1, 0);
+            }
+        }
+    };
+
+    that.right = function() {
+        for (let id in MyGame.entities){
+            let entity = MyGame.entities[id];
+            if (entity.components["moveable"]){
+                MyGame.systems.movement.move(entity, 1, 0);
+            }
+        }
+    };
+
+    that.reload = function() {
+        MyGame.needsReset = true;
+    }
+
     that.myKeyboard.register(that.upKey, that.up, "press");
     that.myKeyboard.register(that.downKey, that.down, "press");
     that.myKeyboard.register(that.leftKey, that.left, "press");
@@ -41,27 +81,27 @@ MyGame.GameKeyboard = (function(input) {
     // use these functions to register the controls on startup
     that.registerUp = function(handler){
         that.up = handler;
-        that.myKeyboard.register(this.upKey, that.up, "press");
+        that.myKeyboard.register(that.upKey, that.up, "press");
     }
 
     that.registerDown = function(handler){
         that.down = handler;
-        that.myKeyboard.register(this.downKey, that.down, "press");
+        that.myKeyboard.register(that.downKey, that.down, "press");
     }
 
     that.registerLeft = function(handler){
         that.left = handler;
-        that.myKeyboard.register(this.leftKey, that.left, "press");
+        that.myKeyboard.register(that.leftKey, that.left, "press");
     }
 
     that.registerRight = function(handler){
         that.right = handler;
-        that.myKeyboard.register(this.rightKey, that.right, "press");
+        that.myKeyboard.register(that.rightKey, that.right, "press");
     }
 
     that.registerReload = function(handler){
         that.reload = handler;
-        that.myKeyboard.register(this.reloadKey, that.reload, "press");
+        that.myKeyboard.register(that.reloadKey, that.reload, "press");
     }
 
     that.saveKey = function(key, value){

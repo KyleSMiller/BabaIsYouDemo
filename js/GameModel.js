@@ -1,16 +1,14 @@
 function GameModel(levelFile, currentLevel) {
     "use strict";
     
-    // // start on level 0
-    // let levelNum = 0;
-    // MyGame.Level.loadLevelFile();
-    // MyGame.Level.loadLevel(levelNum);
-
     let gridWidth = null;
     let gridHeight = null;
     let cellSize = null;  // in canvas pixels. cells must be square
     let visualsGrid = [];
     let entityGrid = [];
+
+    // this is a strange variable, but it's needed bc of a really obscure bug with key rebinding
+    MyGame.needsReset = false;
 
     let cancelNextRequest = false;
     
@@ -153,52 +151,11 @@ function GameModel(levelFile, currentLevel) {
     
     function registerKeys(){
 
-        MyGame.GameKeyboard.registerUp(function() {
-            for (let id in MyGame.entities){
-                let entity = MyGame.entities[id];
-                if (entity.components["moveable"]){
-                    MyGame.systems.movement.move(entity, 0, -1);
-                }
-            }
-        });
-
-        MyGame.GameKeyboard.registerDown(function() {
-            for (let id in MyGame.entities){
-                let entity = MyGame.entities[id];
-                if (entity.components["moveable"]){
-                    MyGame.systems.movement.move(entity, 0, 1);
-                }
-            }
-        });
-
-        MyGame.GameKeyboard.registerLeft(function() {
-            for (let id in MyGame.entities){
-                let entity = MyGame.entities[id];
-                if (entity.components["moveable"]){
-                    MyGame.systems.movement.move(entity, -1, 0);
-                }
-            }
-        });
-
-        MyGame.GameKeyboard.registerRight(function() {
-            for (let id in MyGame.entities){
-                let entity = MyGame.entities[id];
-                if (entity.components["moveable"]){
-                    MyGame.systems.movement.move(entity, 1, 0);
-                }
-            }
-        });
-
-        MyGame.GameKeyboard.registerReload(function() {
-            gridWidth = null;
-            gridHeight = null;
-            cellSize = null;  // in canvas pixels. cells must be square
-            visualsGrid = [];
-            entityGrid = [];
-            MyGame.entities = [];
-            MyGame.systems.winning.reset();
-            initalize();            
-        })
+        MyGame.GameKeyboard.registerUp(MyGame.GameKeyboard.up);
+        MyGame.GameKeyboard.registerDown(MyGame.GameKeyboard.down);
+        MyGame.GameKeyboard.registerLeft(MyGame.GameKeyboard.left);
+        MyGame.GameKeyboard.registerRight(MyGame.GameKeyboard.right);
+        MyGame.GameKeyboard.registerReload(MyGame.GameKeyboard.reload);
 
     }    
 
@@ -240,8 +197,8 @@ function GameModel(levelFile, currentLevel) {
     }
 
     function initalize(){
-        readLevel();
         registerKeys();
+        readLevel();
     }
     
     MyGame.Music.play();
@@ -254,6 +211,19 @@ function GameModel(levelFile, currentLevel) {
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
         MyGame.systems.movement.update(elapsedTime);
         MyGame.Music.shouldPlay = true;
+
+        // if the reset key is pressed, reload the level
+        if (MyGame.needsReset){
+            MyGame.needsReset = false;
+            gridWidth = null;
+            gridHeight = null;
+            cellSize = null;
+            visualsGrid = [];
+            entityGrid = [];
+            MyGame.entities = [];
+            MyGame.systems.winning.reset();
+            initalize();
+        }
         
         // return to main menu after finishing level
         if (currentLevel != MyGame.Level.currentLevelNum){
