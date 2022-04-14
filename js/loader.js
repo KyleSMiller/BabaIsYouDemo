@@ -256,6 +256,9 @@ MyGame.loader = (function() {
         },{
             key: 'particle_newYou',
             source: '/images/particle_newYou.png'
+        },{
+            key: 'particle_death',
+            source: '/images/particle_death.png'
         },
         // {
         //     key: 'move',

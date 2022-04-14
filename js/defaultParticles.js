@@ -93,9 +93,27 @@ MyGame.particles = (function (){
         return particleSystems;
     }
 
+    let destroyed = function(entity){
+        let particleSystems = [];
+        let edges = getEdges(entity);
+        for (let i = 0; i < edges.length; i++){
+            particleSystems.push(MyGame.systems.ParticleSystem({
+                range: edges[i],
+                size: { mean: 5, stdev: 2 },
+                speed: { mean: 10, stdev: 25 },
+                lifetime: { mean: 0.25, stdev: 0.1 },
+                duration: 0.5,  // in seconds
+                image: MyGame.assets["particle_death"]
+            }));
+        };
+        
+        return particleSystems;
+    }
+
     return {
         win: win,
         newWin: newWin,
-        newYou: newYou
+        newYou: newYou,
+        destroyed: destroyed
     };
 }());

@@ -213,8 +213,8 @@ function GameModel(levelFile, currentLevel) {
     function update(elapsedTime){
         MyGame.systems.render.update(elapsedTime, MyGame.entities);
         MyGame.systems.winning.update(elapsedTime, MyGame.entities);
-        MyGame.systems.sinking.update(MyGame.entities);
-        MyGame.systems.kill.update(MyGame.entities);
+        MyGame.systems.sinking.update(elapsedTime, MyGame.entities);
+        MyGame.systems.kill.update(elapsedTime, MyGame.entities);
         MyGame.systems.rules.update(elapsedTime, MyGame.entities, entityGrid);
         MyGame.systems.movement.update(elapsedTime);
         MyGame.Music.shouldPlay = true;
