@@ -4,15 +4,42 @@ MyGame.Level = (function(){
     let currentLevel = "";
     let levelFile = "";
     let levels = [];
+    let levelTitles = [];
 
     function loadLevelFile(){
         levelFile = MyGame.assets.levels;
-        levels = levelFile.split("Level-");
-        // javascript doesn't have an easy way to keep the delimeter on split, so manually re-add it
-        levels.splice(0, 1);
-        for (let level = 0; level < levels.length; level++){
-            levels[level] = "Level-".concat(levels[level]);
+        readLevel(0);  // recursively read in all levels, starting with first level
+    }
+
+    function readLevel(offset){
+        // Recursively read in the levels
+
+        let fileLines = levelFile.split("\n");
+        // javascript has no easy way to keep delimeter, so manually re-add it
+        for (let i = 0; i < fileLines.length; i++){
+            fileLines[i] = fileLines[i].concat("\n");
         }
+        let curLevelNum = levelTitles.length;
+
+        // reached end of file
+        if (offset >= fileLines.length - 1){
+            return;
+        }
+
+        // read the title
+        levelTitles.push(fileLines[offset]);
+        // read the dimensions
+        let height = parseInt(fileLines[offset + 1].split("x")[1]) * 2 + 2;
+        
+        // read the level
+        levels[curLevelNum] = "";
+        
+        for (let i = 0; i < height; i++){
+            levels[curLevelNum] = levels[curLevelNum].concat(fileLines[offset]);
+            offset += 1;
+        }
+
+        return readLevel(offset);
     }
 
     function loadLevel(levelNum){
