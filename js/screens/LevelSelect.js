@@ -14,8 +14,8 @@ MyGame.screens["level-select-screen"] = (function(game){
             let entry = document.createElement("li");
             // create the level select button
             let button = document.createElement("button");
-            button.innerHTML = `Level-${i+1}`;
-            button.id = `Level-${i}`;
+            button.innerHTML = MyGame.Level.levelTitles[i];
+            button.id = MyGame.Level.levelTitles[i];
             button.addEventListener(
                 "click",
                 function(){ 
