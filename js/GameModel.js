@@ -157,7 +157,14 @@ function GameModel(levelFile, currentLevel) {
         MyGame.GameKeyboard.registerRight(MyGame.GameKeyboard.right);
         MyGame.GameKeyboard.registerReload(MyGame.GameKeyboard.reload);
 
-    }    
+        MyGame.GameKeyboard.myKeyboard.register("Escape", function() {
+            cancelNextRequest = true;
+            MyGame.manager.openScreen("main-menu-screen");
+            MyGame.Music.stop();
+            clearLevel();
+        });
+
+    }
 
     function nextLevel(){
         gridWidth = null;
