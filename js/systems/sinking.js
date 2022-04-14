@@ -15,7 +15,7 @@ MyGame.systems.sinking = (function(){
 
         for (let id in entities) {
             let entity = entities[id];
-            if (entity.components.moveable || entity.components.pushable){
+            if (entity.components.sinkable && !entity.components.sink) {
                 ents.push(entity);
             }
             if (entity.components.sink){

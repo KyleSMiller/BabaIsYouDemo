@@ -12,6 +12,8 @@ let Cat = function(x, y, size){
     }));
     cat.addComponent(MyGame.components.Type({type: "cat"}));
     cat.addComponent(MyGame.components.AssociatedBlock({block: "babaBlock"}));
+    cat.addComponent(MyGame.components.Sinkable({}));
+    cat.addComponent(MyGame.components.Killable({}));
 
     return cat;
 }
@@ -33,6 +35,7 @@ let Rock = function(x, y, size){
     }));
     rock.addComponent(MyGame.components.Type({type: "rock"}));
     rock.addComponent(MyGame.components.AssociatedBlock({block: "rockBlock"}));
+    rock.addComponent(MyGame.components.Sinkable({}));
 
     return rock;
 }
@@ -47,6 +50,8 @@ let Wall = function(x, y, size){
     }));
     wall.addComponent(MyGame.components.Type({type: "wall"}));
     wall.addComponent(MyGame.components.AssociatedBlock({block: "wallBlock"}));
+    wall.addComponent(MyGame.components.Sinkable({}));
+    wall.addComponent(MyGame.components.Killable({}));
 
     return wall;
 }
@@ -68,6 +73,8 @@ let Flag = function(x, y, size){
     }));
     flag.addComponent(MyGame.components.Type({type: "flag"}));
     flag.addComponent(MyGame.components.AssociatedBlock({block: "flagBlock"}));
+    flag.addComponent(MyGame.components.Sinkable({}));
+    flag.addComponent(MyGame.components.Killable({}));
     
     return flag;
 }
@@ -122,6 +129,8 @@ let Water = function(x, y, size){
     }));
     water.addComponent(MyGame.components.Type({type: "water"}));
     water.addComponent(MyGame.components.AssociatedBlock({block: "waterBlock"}));
+    water.addComponent(MyGame.components.Sinkable({}));
+    water.addComponent(MyGame.components.Killable({}));
 
     return water;
 }
@@ -143,6 +152,8 @@ let Lava = function(x, y, size){
     }));
     lava.addComponent(MyGame.components.Type({type: "lava"}));
     lava.addComponent(MyGame.components.AssociatedBlock({block: "lavaBlock"}));
+    lava.addComponent(MyGame.components.Sinkable({}));
+    lava.addComponent(MyGame.components.Killable({}));
 
     return lava;
 }

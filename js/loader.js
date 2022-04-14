@@ -80,6 +80,14 @@ MyGame.loader = (function() {
             message: 'Win component loaded',
             onComplete: null
         }, {
+            scripts: ['components/sinkable'],
+            message: 'Sinkable component loaded',
+            onComplete: null
+        }, {
+            scripts: ['components/killable'],
+            message: 'Killable component loaded',
+            onComplete: null
+        }, {
             scripts: ['components/sink'],
             message: 'Sink component loaded',
             onComplete: null
