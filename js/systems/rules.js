@@ -2,6 +2,7 @@ MyGame.systems.rules = (function(){
     "use strict";
 
     let rules = {}  // "type": "rule"
+    let replacements = {}  // "original": "replacement"
     let prevYou = [];
     let prevWin = [];
     let particleSystems = [];
@@ -9,54 +10,72 @@ MyGame.systems.rules = (function(){
     function createRules(entity, grid){
         let x = entity.components.position.x;
         let y = entity.components.position.y;
-        let typeUp = null;
-        let typeLeft = null;
-        let ruleDown = null;
-        let ruleRight = null;
+        let blockUp = null;
+        let blockLeft = null;
+        let blockDown = null;
+        let blockRight = null;
 
         // get the blocks on each side of the isBlock
-        if (y - 1 >= 0){
+        if (y - 1 >= 0){  // up
             let ents = MyGame.entitiesAt(x, y - 1);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.objectBlock){
-                    typeUp = ents[i];  // object blocks can never overlap, so don't account for it
+                    blockUp = ents[i];  // object blocks can never overlap, so don't account for it
                 }
             }
         }
-        if (x - 1 >= 0){
+        if (x - 1 >= 0){  // left
             let ents = MyGame.entitiesAt(x - 1, y);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.objectBlock){
-                    typeLeft = ents[i];
+                    blockLeft = ents[i];
                 }
             }
         }
-        if (y + 1 <= grid[0].length - 1){
+        if (y + 1 <= grid[0].length - 1){  // down
             let ents = MyGame.entitiesAt(x, y + 1);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.rule){
-                    ruleDown = ents[i];
+                    blockDown = ents[i];
+                }
+                if (ents[i].components.objectBlock){
+                    blockDown = ents[i];
                 }
             }
         }
-        if (x + 1 <= grid.length - 1){
+        if (x + 1 <= grid.length - 1){  // right
             let ents = MyGame.entitiesAt(x + 1, y);
             for (let i = 0; i < ents.length; i++){
                 if (ents[i].components.rule){
-                    ruleRight = ents[i];
+                    blockRight = ents[i];
+                }
+                if (ents[i].components.objectBlock){
+                    blockRight = ents[i];
                 }
             }
         }
 
-        // check that surrounding blocks are valid
-        if (typeUp !== null && typeUp.components.objectBlock){
-            if (ruleDown !== null && ruleDown.components.rule){
-                rules[typeUp.components.type.type] = ruleDown.components.rule.rule;
+        // check that surrounding blocks are valid, and if so, create an appropriate rule
+        if (blockUp !== null && blockUp.components.objectBlock){
+            if (blockDown !== null && blockDown.components.rule){
+                // this gets called when there is a block configuration such as "Baba IS You"
+                rules[blockUp.components.type.type] = blockDown.components.rule.rule;
+            }
+            if (blockDown !== null && blockDown.components.objectBlock){
+                // this gets called when there is a block configuration such as "Baba IS Rock"
+                // so, we remove the first entity and replace it with a new instance of the second entity
+                replacements[blockUp.components.type.type] = blockDown.components.associatedEntity.entity;
             }
         }
-        if (typeLeft !== null && typeLeft.components.objectBlock){
-            if (ruleRight !== null && ruleRight.components.rule){
-                rules[typeLeft.components.type.type] = ruleRight.components.rule.rule;
+        if (blockLeft !== null && blockLeft.components.objectBlock){
+            if (blockRight !== null && blockRight.components.rule){
+                // this gets called when there is a block configuration such as "Baba IS You"
+                rules[blockLeft.components.type.type] = blockRight.components.rule.rule;
+            }
+            if (blockRight !== null && blockRight.components.objectBlock){
+                // this gets called when there is a block configuration such as "Baba IS Rock"
+                // so, we remove the first entity and replace it with a new instance of the second entity
+                replacements[blockLeft.components.type.type] = blockRight.components.associatedEntity.entity;
             }
         }
 
@@ -148,6 +167,7 @@ MyGame.systems.rules = (function(){
         
         // check rule blocks for rules
         rules = {}
+        replacements = {}
         for (let i = 0; i < entities.length; i++){
             if (entities[i].components.type.type === "isBlock"){
                 createRules(entities[i], grid);
@@ -175,6 +195,26 @@ MyGame.systems.rules = (function(){
             }
         }
 
+        // apply the replacements defined by the rule blocks
+        for (let i = 0; i < entities.length; i++){
+            if (entities[i].components.associatedBlock){
+                if (replacements[entities[i].components.associatedBlock.block]){
+                    let x = entities[i].components.position.x;
+                    let y = entities[i].components.position.y;
+                    let size = entities[i].components.appearance.size.width;
+                    let replacement = replacements[entities[i].components.associatedBlock.block];
+
+                    entities.splice(i, 1);
+
+                    let replacementEntity = MyGame.defaultEntities[replacement](x, y, size)
+                    grid[x][y] = replacementEntity;
+                    entities.push(replacementEntity);
+                }
+            }
+        }
+
+
+
         newYou(elapsedTime, prevYou, you);
         prevYou = you;
         you = [];
@@ -182,7 +222,6 @@ MyGame.systems.rules = (function(){
         newWin(elapsedTime, prevWin, win);
         prevWin = win;
         win = [];
-
 
     }
 

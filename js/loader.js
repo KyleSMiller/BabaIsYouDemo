@@ -92,6 +92,10 @@ MyGame.loader = (function() {
             message: 'AssociatedBlock component loaded',
             onComplete: null
         }, {
+            scripts: ['components/associatedEntity'],
+            message: 'AssociatedEntity component loaded',
+            onComplete: null
+        }, {
             scripts: ['components/objectBlock'],
             message: 'objectBlock component loaded',
             onComplete: null

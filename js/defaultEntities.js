@@ -323,6 +323,8 @@ let KillBlock = function(x, y, size){
     return killBlock;
 }
 
+// Entity blocks
+
 let BabaBlock = function(x, y, size){
     let babaBlock = Entity.createEntity();
     babaBlock.addComponent(MyGame.components.Position({ x: x, y: y }));
@@ -341,6 +343,7 @@ let BabaBlock = function(x, y, size){
     babaBlock.addComponent(MyGame.components.Type({type: "babaBlock"}));
     babaBlock.addComponent(MyGame.components.ObjectBlock({}));
     babaBlock.addComponent(MyGame.components.Pushable({}));
+    babaBlock.addComponent(MyGame.components.AssociatedEntity({entity: "cat"}));
 
     return babaBlock;
 }
@@ -363,6 +366,7 @@ let WallBlock = function(x, y, size){
     wallBlock.addComponent(MyGame.components.Type({type: "wallBlock"}));
     wallBlock.addComponent(MyGame.components.ObjectBlock({}));
     wallBlock.addComponent(MyGame.components.Pushable({}));
+    wallBlock.addComponent(MyGame.components.AssociatedEntity({entity: "wall"}));
     
     return wallBlock;
 }
@@ -385,6 +389,7 @@ let RockBlock = function(x, y, size){
     rockBlock.addComponent(MyGame.components.Type({type: "rockBlock"}));
     rockBlock.addComponent(MyGame.components.ObjectBlock({}));
     rockBlock.addComponent(MyGame.components.Pushable({}));
+    rockBlock.addComponent(MyGame.components.AssociatedEntity({entity: "rock"}));
 
     return rockBlock;
 }
@@ -407,6 +412,7 @@ let FlagBlock = function(x, y, size){
     flagBlock.addComponent(MyGame.components.Type({type: "flagBlock"}));
     flagBlock.addComponent(MyGame.components.ObjectBlock({}));
     flagBlock.addComponent(MyGame.components.Pushable({}));
+    flagBlock.addComponent(MyGame.components.AssociatedEntity({entity: "flag"}));
 
     return flagBlock;
 }
@@ -429,6 +435,7 @@ let LavaBlock = function(x, y, size){
     lavaBlock.addComponent(MyGame.components.Type({type: "lavaBlock"}));
     lavaBlock.addComponent(MyGame.components.ObjectBlock({}));
     lavaBlock.addComponent(MyGame.components.Pushable({}));
+    lavaBlock.addComponent(MyGame.components.AssociatedEntity({entity: "lava"}));
 
     return lavaBlock;
 }
@@ -451,6 +458,35 @@ let WaterBlock = function(x, y, size){
     waterBlock.addComponent(MyGame.components.Type({type: "waterBlock"}));
     waterBlock.addComponent(MyGame.components.ObjectBlock({}));
     waterBlock.addComponent(MyGame.components.Pushable({}));
+    waterBlock.addComponent(MyGame.components.AssociatedEntity({entity: "water"}));
 
     return waterBlock;
+}
+
+MyGame.defaultEntities = {
+    "cat": Cat,
+    "rock": Rock,
+    "wall": Wall,
+    "flag": Flag,
+    "floor": Floor,
+    "grass": Grass,
+    "water": Water,
+    "lava": Lava,
+    "hedge": Hedge,
+    "border": Border,
+
+    "isBlock": IsBlock,
+    "youBlock": YouBlock,
+    "stopBlock": StopBlock,
+    "pushBlock": PushBlock,
+    "winBlock": PushBlock,
+    "sinkBlock": SinkBlock,
+    "killBlock": KillBlock,
+
+    "babaBlock": BabaBlock,
+    "wallBlock": WallBlock,
+    "rockBlock": RockBlock,
+    "flagBlock": FlagBlock,
+    "lavaBlock": LavaBlock,
+    "waterBlock": WaterBlock
 }
